@@ -569,40 +569,68 @@ h1 {
     width: min(100% - 32px, var(--max-width));
   }
 
+  .site-header {
+    position: static;
+  }
+
   .nav-wrap {
     min-height: auto;
-    padding: 14px 0 16px;
-    gap: 12px;
+    padding: 16px 0 18px;
+    gap: 14px;
   }
 
   .brand {
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .nav {
-    gap: 10px 14px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+    justify-content: start;
+    gap: 8px 16px;
   }
 
   .nav a {
     font-size: 12px;
+    line-height: 1.4;
   }
 
   .hero {
     min-height: auto;
-    padding: 70px 0 70px;
+    padding: 72px 0 68px;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
   }
 
   h1 {
-    font-size: 40px;
-    line-height: 1.05;
+    font-size: 36px;
+    line-height: 1.08;
+    margin-bottom: 28px;
   }
 
   .lead {
-    font-size: 17px;
+    font-size: 16px;
+    line-height: 1.75;
+    margin-bottom: 32px;
+  }
+
+  .buttons {
+    gap: 12px;
+  }
+
+  .btn {
+    min-height: 50px;
+    padding: 0 20px;
+    font-size: 13px;
   }
 
   .section {
-    padding: 85px 0;
+    padding: 82px 0;
   }
 
   .proof-grid {
@@ -610,6 +638,7 @@ h1 {
   }
 
   .proof-item {
+    padding: 30px 28px;
     border-right: 0;
     border-bottom: 1px solid var(--border);
   }
@@ -620,6 +649,18 @@ h1 {
 
   .process-grid {
     grid-template-columns: 1fr;
+  }
+
+  .section-heading h2,
+  .about-grid h2,
+  .cta-inner h2 {
+    font-size: 36px;
+    line-height: 1.12;
+  }
+
+  .card,
+  .case-card {
+    padding: 26px;
   }
 
   .footer-wrap {
