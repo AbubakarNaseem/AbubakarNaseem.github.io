@@ -328,12 +328,14 @@ h1 {
   border-radius: 14px;
   transition:
     transform 0.2s ease,
-    border-color 0.2s ease;
+    border-color 0.2s ease,
+    background 0.2s ease;
 }
 
 .case-card:hover {
   transform: translateY(-3px);
   border-color: var(--border-strong);
+  background: rgba(20, 29, 49, 0.42);
 }
 
 .case-label {
@@ -362,14 +364,25 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  margin-top: 18px;
 }
 
 .case-tags span {
+  display: inline-flex;
+  align-items: center;
   padding: 6px 10px;
-  color: var(--text-soft);
-  font-size: 11px;
-  border: 1px solid var(--border-strong);
+  border: 1px solid rgba(135, 167, 255, 0.18);
   border-radius: 999px;
+  color: var(--text-soft);
+  font-size: 12px;
+  line-height: 1;
+}
+
+.case-card > p:last-child {
+  margin-top: 22px;
+  margin-bottom: 0;
+  color: var(--accent);
+  font-weight: 700;
 }
 
 /* =========================
