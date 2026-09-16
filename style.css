@@ -2938,3 +2938,232 @@ span:nth-child(3) {
   }
 
 }
+/* =====================================================
+   FINAL DESKTOP NAVBAR — FLOWTRIX VISUAL MATCH
+   HERO LAYOUT IS NOT TOUCHED
+===================================================== */
+
+@media (min-width: 901px) {
+
+  /* -----------------------------------------
+     GLASS BAR
+  ------------------------------------------ */
+
+  .site-header .premium-nav-shell {
+    min-height: 72px;
+
+    padding:
+      8px 14px
+      8px 18px;
+
+    grid-template-columns:
+      210px
+      1fr
+      auto;
+
+    gap: 24px;
+
+    border:
+      1px solid
+      rgba(255, 255, 255, 0.11);
+
+    border-radius: 12px;
+
+    background:
+      linear-gradient(
+        90deg,
+        rgba(9, 29, 24, 0.84) 0%,
+        rgba(13, 42, 34, 0.74) 52%,
+        rgba(11, 31, 27, 0.82) 100%
+      );
+
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.045),
+      0 10px 30px rgba(0, 0, 0, 0.14);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+
+  /* -----------------------------------------
+     BRAND LOGO
+  ------------------------------------------ */
+
+  .premium-brand {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    width: fit-content;
+
+    height: 100%;
+  }
+
+
+  .premium-brand-logo {
+    display: block;
+
+    width: 176px;
+    height: auto;
+
+    max-width: 176px;
+
+    object-fit: contain;
+
+    object-position: left center;
+  }
+
+
+  /* OLD BRAND ELEMENTS — SAFETY */
+  .brand-mark,
+  .brand-name {
+    display: none !important;
+  }
+
+
+  /* -----------------------------------------
+     CENTER NAVIGATION
+  ------------------------------------------ */
+
+  .desktop-nav {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+  }
+
+
+  .nav-link {
+    min-height: 42px;
+
+    padding:
+      0 7px;
+
+    border-radius: 0;
+
+    color:
+      rgba(242, 247, 244, 0.78);
+
+    background: transparent;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    line-height: 1;
+
+    letter-spacing: -0.025em;
+
+    white-space: nowrap;
+  }
+
+
+  .nav-link:hover {
+    color: #ffffff;
+
+    background: transparent;
+  }
+
+
+  /* -----------------------------------------
+     DROPDOWN ARROWS
+  ------------------------------------------ */
+
+  .nav-dropdown-trigger {
+    gap: 7px;
+  }
+
+
+  .nav-chevron {
+    display: inline-block;
+
+    color:
+      rgba(238, 246, 242, 0.80);
+
+    font-size: 10px;
+
+    line-height: 1;
+
+    transform:
+      translateY(-1px);
+  }
+
+
+  /* KEEP ACTIVE DROPDOWN CLEAN */
+  .nav-dropdown-trigger.is-active {
+    color: #ffffff;
+
+    background: transparent;
+  }
+
+
+  /* -----------------------------------------
+     BOOK A CALL
+  ------------------------------------------ */
+
+  .nav-call-button {
+    position: relative;
+
+    min-width: 146px;
+    min-height: 48px;
+
+    padding:
+      0 22px;
+
+    border:
+      1px solid
+      rgba(82, 255, 188, 0.65);
+
+    border-radius: 7px;
+
+    color: #071d15;
+
+    background:
+      linear-gradient(
+        180deg,
+        #2fe0a4 0%,
+        #69ef8f 100%
+      );
+
+    box-shadow:
+      0 0 0 4px rgba(46, 230, 169, 0.07),
+      0 0 20px rgba(45, 225, 165, 0.20),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
+    font-size: 14px;
+    font-weight: 650;
+
+    letter-spacing: -0.025em;
+
+    line-height: 1;
+
+    white-space: nowrap;
+  }
+
+
+  .nav-call-button::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 3px;
+
+    border:
+      1px solid
+      rgba(255, 255, 255, 0.30);
+
+    border-radius: 5px;
+
+    pointer-events: none;
+  }
+
+
+  .nav-call-button:hover {
+    filter: brightness(1.035);
+  }
+
+}
