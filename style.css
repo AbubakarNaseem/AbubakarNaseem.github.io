@@ -2890,3 +2890,18 @@ span:nth-child(3) {
   }
 
 }
+/* =====================================================
+   NAVBAR GLASS WIDTH — FLOWTRIX MATCH
+===================================================== */
+
+@media (min-width: 901px) {
+
+  .site-header .premium-nav-shell {
+    width: 92vw;
+    max-width: none;
+
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
