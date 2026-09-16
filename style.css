@@ -2796,3 +2796,47 @@ span:nth-child(3) {
   }
 
 }
+/* =====================================================
+   FINAL DESKTOP WIDTH CORRECTION
+   Remove fixed-width cap on wide screens
+===================================================== */
+
+@media (min-width: 1200px) {
+
+  /* NAVBAR — almost full viewport width like Flowtrix */
+  .site-header .premium-nav-shell {
+    width: calc(100vw - 80px);
+    max-width: none;
+
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* HERO — inset from navbar, but still wide */
+  .hero-v2 > .hero-v2-grid {
+    width: calc(100vw - 190px);
+    max-width: none;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    grid-template-columns:
+      520px
+      448px;
+
+    justify-content: space-between;
+
+    gap: 70px;
+  }
+
+  /* LEFT CONTENT */
+  .hero-v2-copy {
+    padding-left: 0;
+  }
+
+  /* RIGHT REEL */
+  .project-rail-shell {
+    justify-self: end;
+  }
+
+}
