@@ -2679,3 +2679,52 @@ span:nth-child(3) {
   }
 
 }
+/* =====================================================
+   FLOWTRIX DESKTOP GEOMETRY CORRECTION
+   Wide navbar, inset hero content
+===================================================== */
+
+@media (min-width: 901px) {
+
+  /* WIDER NAV GLASS */
+  .site-header .premium-nav-shell {
+    width: min(1320px, calc(100% - 72px));
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* HERO CONTENT SITS INSIDE NAV EDGES */
+  .hero-v2 > .hero-v2-grid {
+    width: min(1185px, calc(100% - 180px));
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+
+    grid-template-columns:
+      500px
+      430px;
+
+    gap: 64px;
+  }
+
+  /* SHIFT LEFT CONTENT INWARD */
+  .hero-v2-copy {
+    padding-left: 8px;
+  }
+
+  /* KEEP PROJECT RAIL AWAY FROM RIGHT EDGE */
+  .project-rail-shell {
+    justify-self: end;
+    width: 430px;
+  }
+
+  .project-rail-viewport {
+    width: 430px;
+  }
+
+  .project-rail-card {
+    width: 430px;
+  }
+
+}
