@@ -3577,3 +3577,140 @@ span:nth-child(3) {
   }
 
 }
+/* =====================================================
+   DESKTOP NAVBAR — FINAL VISIBLE-SIZE CORRECTION
+   Strong correction, not micro-adjustment
+===================================================== */
+
+@media (min-width: 901px) {
+
+  /* ===================================================
+     BRAND
+  =================================================== */
+
+  .premium-brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 12px;
+
+    overflow: visible;
+  }
+
+
+  /*
+     The uploaded PNG contains transparent space.
+     Scale the actual image so the VISIBLE green symbol
+     reaches the Flowtrix-like size.
+  */
+
+  .premium-brand-symbol {
+    width: 34px !important;
+    height: 25px !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    flex: 0 0 34px;
+
+    object-fit: contain;
+
+    transform: scale(1.55);
+
+    transform-origin: left center;
+
+    margin-right: 8px;
+  }
+
+
+  /* ABUBAKAR NASEEM WORDMARK */
+
+  .premium-brand-wordmark {
+    color: #f7f8f7;
+
+    font-family:
+      "Inter",
+      Arial,
+      Helvetica,
+      sans-serif;
+
+    font-size: 18px !important;
+
+    font-weight: 500 !important;
+
+    line-height: 1;
+
+    letter-spacing: -0.045em;
+
+    white-space: nowrap;
+  }
+
+
+  /* ===================================================
+     CENTER NAV — CLEARLY LARGER
+  =================================================== */
+
+  .desktop-nav {
+    gap: 17px;
+  }
+
+
+  .nav-link {
+    min-height: 48px;
+
+    padding-left: 8px;
+    padding-right: 8px;
+
+    color:
+      rgba(246, 249, 247, 0.82);
+
+    font-size: 15px !important;
+
+    font-weight: 500 !important;
+
+    line-height: 1;
+
+    letter-spacing: -0.035em;
+  }
+
+
+  /* ===================================================
+     DROPDOWN ITEMS
+  =================================================== */
+
+  .nav-dropdown-trigger {
+    min-height: 48px;
+
+    padding-left: 9px;
+    padding-right: 9px;
+
+    gap: 9px;
+  }
+
+
+  .nav-chevron {
+    font-size: 12px !important;
+
+    line-height: 1;
+
+    color:
+      rgba(246, 249, 247, 0.82);
+
+    transform: translateY(-1px);
+  }
+
+
+  /* ===================================================
+     BOOK A CALL
+  =================================================== */
+
+  .nav-call-button {
+    font-size: 15px !important;
+
+    font-weight: 650;
+
+    letter-spacing: -0.035em;
+  }
+
+}
