@@ -3714,3 +3714,26 @@ span:nth-child(3) {
   }
 
 }
+/* =====================================================
+   FINAL DESKTOP LOGO MARK CORRECTION
+===================================================== */
+
+@media (min-width: 901px) {
+
+  .premium-brand-symbol {
+    width: 39px !important;
+    height: 29px !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    flex: 0 0 39px;
+
+    transform: scale(1.72);
+
+    transform-origin: left center;
+
+    margin-right: 10px;
+  }
+
+}
