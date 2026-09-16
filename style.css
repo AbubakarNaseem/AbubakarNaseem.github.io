@@ -2840,3 +2840,53 @@ span:nth-child(3) {
   }
 
 }
+
+/* =====================================================
+   FIX BAD WIDE-SCREEN HERO SPREAD
+   Keep wide navbar, keep hero columns grouped
+===================================================== */
+
+@media (min-width: 1200px) {
+
+  /* KEEP THE WIDE NAVBAR */
+  .site-header .premium-nav-shell {
+    width: calc(100vw - 80px);
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* HERO SHOULD NOT STRETCH ACROSS THE WHOLE SCREEN */
+  .hero-v2 > .hero-v2-grid {
+    width: 1185px;
+    max-width: calc(100vw - 140px);
+
+    margin-left: auto;
+    margin-right: auto;
+
+    grid-template-columns:
+      500px
+      448px;
+
+    justify-content: start;
+
+    gap: 105px;
+  }
+
+  /* LEFT CONTENT */
+  .hero-v2-copy {
+    padding-left: 0;
+  }
+
+  /* RIGHT RAIL */
+  .project-rail-shell {
+    justify-self: start;
+    width: 448px;
+  }
+
+  .project-rail-viewport,
+  .project-rail-card {
+    width: 448px;
+  }
+
+}
