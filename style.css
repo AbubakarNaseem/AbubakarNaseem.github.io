@@ -2905,3 +2905,19 @@ span:nth-child(3) {
   }
 
 }
+
+/* =====================================================
+   FINAL NAVBAR WIDTH — FLOWTRIX PROPORTION
+   Only changes the top glass bar width.
+   Hero/content/project positions remain unchanged.
+===================================================== */
+
+@media (min-width: 901px) {
+  .site-header .premium-nav-shell {
+    width: calc(100% - 120px);
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
