@@ -2728,3 +2728,71 @@ span:nth-child(3) {
   }
 
 }
+/* =====================================================
+   FLOWTRIX PROPORTION POLISH — DESKTOP
+===================================================== */
+
+@media (min-width: 901px) {
+
+  /* HERO COLUMNS */
+  .hero-v2 > .hero-v2-grid {
+    grid-template-columns:
+      500px
+      448px;
+
+    gap: 46px;
+  }
+
+  /* RIGHT PROJECT RAIL */
+  .project-rail-shell,
+  .project-rail-viewport,
+  .project-rail-card {
+    width: 448px;
+  }
+
+  /* HEADLINE */
+  .hero-v2-title {
+    font-size: 56px;
+    line-height: 1.02;
+    margin-bottom: 24px;
+  }
+
+  /* PARAGRAPH */
+  .hero-v2-description {
+    max-width: 475px;
+    font-size: 17px;
+    line-height: 1.52;
+    margin-bottom: 28px;
+  }
+
+  /* CTA GLASS */
+  .hero-v2-action-card {
+    max-width: 405px;
+    padding: 8px;
+  }
+
+  .hero-v2-primary-button,
+  .hero-v2-secondary-button {
+    min-height: 54px;
+  }
+
+  /* SLIGHTLY TIGHTER TRUST AREA */
+  .hero-v2-trust {
+    margin-top: 56px;
+  }
+
+  .hero-v2-trust-label {
+    margin-bottom: 16px;
+  }
+
+  /* PROJECT FOOTER */
+  .project-card-footer {
+    min-height: 52px;
+    padding: 6px 11px;
+  }
+
+  .project-card-arrow {
+    font-size: 26px;
+  }
+
+}
