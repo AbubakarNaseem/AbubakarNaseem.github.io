@@ -3167,3 +3167,315 @@ span:nth-child(3) {
   }
 
 }
+/* =====================================================
+   FINAL DESKTOP NAVBAR
+   Flowtrix-style proportions
+   DO NOT MODIFY HERO
+===================================================== */
+
+@media (min-width: 901px) {
+
+  /* -----------------------------------------
+     NAVBAR GLASS
+     Width stays exactly as currently approved
+  ------------------------------------------ */
+
+  .site-header .premium-nav-shell {
+    min-height: 72px;
+
+    padding:
+      8px 14px
+      8px 18px;
+
+    grid-template-columns:
+      255px
+      1fr
+      146px;
+
+    align-items: center;
+
+    gap: 20px;
+
+    border-radius: 12px;
+
+    border:
+      1px solid
+      rgba(255, 255, 255, 0.11);
+
+    background:
+      linear-gradient(
+        90deg,
+        rgba(8, 25, 22, 0.84) 0%,
+        rgba(11, 39, 32, 0.76) 52%,
+        rgba(9, 27, 24, 0.84) 100%
+      );
+
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.045),
+      0 10px 30px rgba(0, 0, 0, 0.15);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+
+  /* ===================================================
+     LOGO + WORDMARK
+  =================================================== */
+
+  .premium-brand {
+    width: fit-content;
+    height: 100%;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 9px;
+  }
+
+
+  .premium-brand-symbol {
+    display: block;
+
+    width: 30px;
+    height: 30px;
+
+    max-width: 30px;
+    max-height: 30px;
+
+    flex: 0 0 30px;
+
+    object-fit: contain;
+
+    object-position: center;
+  }
+
+
+  .premium-brand-wordmark {
+    color: #f3f6f4;
+
+    font-family:
+      "Inter",
+      Arial,
+      Helvetica,
+      sans-serif;
+
+    font-size: 17px;
+
+    font-weight: 500;
+
+    line-height: 1;
+
+    letter-spacing: -0.045em;
+
+    white-space: nowrap;
+  }
+
+
+  /* disable old brand system */
+
+  .brand-mark,
+  .brand-name,
+  .premium-brand-logo {
+    display: none !important;
+  }
+
+
+  /* ===================================================
+     CENTER NAV
+  =================================================== */
+
+  .desktop-nav {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 14px;
+  }
+
+
+  .nav-link {
+    min-height: 46px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding:
+      0 6px;
+
+    border: 0;
+
+    border-radius: 0;
+
+    background: transparent;
+
+    color:
+      rgba(241, 246, 243, 0.78);
+
+    font-family:
+      "Inter",
+      Arial,
+      Helvetica,
+      sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    line-height: 1;
+
+    letter-spacing: -0.035em;
+
+    white-space: nowrap;
+  }
+
+
+  .nav-link:hover {
+    color: #ffffff;
+
+    background: transparent;
+  }
+
+
+  /* ===================================================
+     DROPDOWN NAV ITEMS
+     Makes Services / Industries / About / Resources
+     feel wider like Flowtrix
+  =================================================== */
+
+  .nav-dropdown-trigger {
+    min-height: 46px;
+
+    gap: 8px;
+
+    padding:
+      0 8px;
+  }
+
+
+  .nav-dropdown-trigger.is-active {
+    color: #ffffff;
+
+    background: transparent;
+  }
+
+
+  .nav-chevron {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color:
+      rgba(244, 248, 245, 0.78);
+
+    font-size: 11px;
+
+    line-height: 1;
+
+    transform:
+      translateY(-1px);
+  }
+
+
+  /* ===================================================
+     SPECIFIC MENU SPACING
+  =================================================== */
+
+  .desktop-nav > a.nav-link {
+    margin-right: 2px;
+  }
+
+
+  .nav-dropdown {
+    display: flex;
+
+    align-items: center;
+  }
+
+
+  /* ===================================================
+     BOOK A CALL
+  =================================================== */
+
+  .nav-call-button {
+    position: relative;
+
+    width: 146px;
+    min-width: 146px;
+
+    height: 48px;
+    min-height: 48px;
+
+    padding: 0 20px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+      1px solid
+      rgba(79, 255, 188, 0.62);
+
+    border-radius: 7px;
+
+    color: #071e15;
+
+    background:
+      linear-gradient(
+        180deg,
+        #31dfa5 0%,
+        #6df08f 100%
+      );
+
+    box-shadow:
+      0 0 0 4px rgba(48, 227, 166, 0.07),
+      0 0 20px rgba(42, 219, 159, 0.20),
+      inset 0 1px 0 rgba(255, 255, 255, 0.28);
+
+    font-family:
+      "Inter",
+      Arial,
+      Helvetica,
+      sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 650;
+
+    line-height: 1;
+
+    letter-spacing: -0.035em;
+
+    white-space: nowrap;
+  }
+
+
+  .nav-call-button::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 3px;
+
+    border:
+      1px solid
+      rgba(255, 255, 255, 0.30);
+
+    border-radius: 5px;
+
+    pointer-events: none;
+  }
+
+
+  .nav-call-button:hover {
+    filter: brightness(1.035);
+  }
+
+}
