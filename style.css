@@ -2921,3 +2921,20 @@ span:nth-child(3) {
   }
 }
 
+/* =====================================================
+   FINAL DESKTOP PROJECT RAIL POSITION
+   Lock left side + move only right reel outward
+===================================================== */
+
+@media (min-width: 1181px) {
+
+  .hero-v2 > .hero-v2-grid {
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .project-rail-shell {
+    justify-self: end;
+  }
+
+}
