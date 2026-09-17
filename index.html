@@ -2000,38 +2000,31 @@
     ];
 
 
-    function closeDesktopMenus() {
+function closeDesktopMenus() {
 
-desktopMenus.forEach(
-  function(item) {
+  desktopMenus.forEach(
+    function(item) {
 
-    item.trigger.addEventListener(
-      "click",
-      function(event) {
+      item.trigger.classList.remove("is-active");
 
-        event.stopPropagation();
+      item.trigger.setAttribute(
+        "aria-expanded",
+        "false"
+      );
 
-        if (
-          item.menu.classList.contains("is-open")
-        ) {
+      item.menu.classList.remove("is-open");
 
-          closeDesktopMenus();
-
-        } else {
-
-          openDesktopMenu(item);
-
-        }
-
-      }
-    );
-
-  }
-);
-
-      navOverlay.classList.remove("is-active");
+      item.menu.setAttribute(
+        "aria-hidden",
+        "true"
+      );
 
     }
+  );
+
+  navOverlay.classList.remove("is-active");
+
+}
 
 
     function openDesktopMenu(item) {
