@@ -3925,3 +3925,108 @@ span:nth-child(3) {
   }
 
 }
+/* =====================================================
+   MOBILE HERO TYPOGRAPHY + PROOF
+   STEP 2
+   DESKTOP UNCHANGED
+===================================================== */
+
+@media (max-width: 600px) {
+
+  /* -----------------------------------------
+     PROOF BADGE
+  ------------------------------------------ */
+
+  .hero-v2-proof {
+    margin-bottom: 18px;
+
+    border-radius: 7px;
+  }
+
+  .hero-v2-proof-primary,
+  .hero-v2-proof-secondary {
+    min-height: 34px;
+
+    font-size: 10px;
+  }
+
+  .hero-v2-proof-primary {
+    gap: 7px;
+
+    padding:
+      0 10px;
+  }
+
+  .hero-v2-proof-secondary {
+    gap: 8px;
+
+    padding:
+      0 11px;
+  }
+
+  .hero-v2-proof-primary strong {
+    font-size: 10px;
+
+    font-weight: 650;
+  }
+
+  .upwork-proof-logo {
+    width: 20px !important;
+    height: 20px !important;
+
+    max-width: 20px !important;
+    max-height: 20px !important;
+
+    flex-basis: 20px;
+  }
+
+  .proof-mini-arrow {
+    font-size: 15px;
+  }
+
+
+  /* -----------------------------------------
+     HEADLINE
+  ------------------------------------------ */
+
+  .hero-v2-title {
+    max-width: 100%;
+
+    margin-bottom: 20px;
+
+    font-size: 37px;
+
+    font-weight: 600;
+
+    line-height: 1.02;
+
+    letter-spacing: -0.055em;
+  }
+
+  .hero-v2-title span {
+    white-space: normal;
+  }
+
+
+  /* -----------------------------------------
+     DESCRIPTION
+  ------------------------------------------ */
+
+  .hero-v2-description {
+    max-width: 100%;
+
+    margin-bottom: 24px;
+
+    color:
+      rgba(244, 246, 244, 0.72);
+
+    font-size: 15px;
+
+    font-weight: 400;
+
+    line-height: 1.48;
+
+    letter-spacing: -0.015em;
+  }
+
+}
