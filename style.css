@@ -3750,3 +3750,235 @@ span:nth-child(3) {
   }
 
 }
+
+/* ============================================================
+   FLOWTRIX FULL-WIDTH MEGA MENU GEOMETRY
+   Makes desktop dropdown span the viewport
+   ============================================================ */
+
+@media (min-width: 901px) {
+
+  /* Make dropdown positioning relative to the viewport/header */
+  .nav-dropdown {
+    position: static !important;
+  }
+
+
+  /* Full-width dropdown panel */
+  .mega-menu {
+    position: fixed !important;
+
+    top: 60px !important;
+    left: 0 !important;
+    right: 0 !important;
+
+    width: 100vw !important;
+    max-width: none !important;
+
+    transform: translateY(-8px) !important;
+
+    margin: 0 !important;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    z-index: 1200;
+  }
+
+
+  .mega-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform: translateY(0) !important;
+  }
+
+
+  /* Full-width white surface */
+  .mega-menu-inner {
+    width: 100% !important;
+    max-width: none !important;
+
+    min-height: 400px;
+
+    margin: 0 !important;
+
+    padding:
+      18px
+      max(34px, calc((100vw - 1280px) / 2))
+      24px !important;
+
+    display: grid !important;
+
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr)) !important;
+
+    gap: 0 !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    background: #ffffff !important;
+
+    box-shadow: none !important;
+  }
+
+
+  /* About / Resources two-column menus still fill full width */
+  .about-menu {
+    width: 100vw !important;
+    max-width: none !important;
+  }
+
+
+  .about-mega-inner {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr)) !important;
+  }
+
+
+  /* Columns */
+  .mega-column {
+    min-height: 350px;
+
+    padding:
+      18px
+      26px
+      24px !important;
+
+    border-right:
+      1px solid
+      rgba(0, 0, 0, 0.08) !important;
+  }
+
+
+  .mega-column:first-child {
+    padding-left: 0 !important;
+  }
+
+
+  .mega-column:last-child {
+    padding-right: 0 !important;
+
+    border-right: 0 !important;
+  }
+
+
+  /* Heading line like Flowtrix */
+  .mega-column-label {
+    margin-bottom: 18px !important;
+
+    padding-bottom: 9px !important;
+
+    border-bottom:
+      1px solid
+      rgba(0, 0, 0, 0.10) !important;
+
+    color:
+      rgba(31, 33, 31, 0.56) !important;
+
+    font-size: 12px !important;
+    font-weight: 500 !important;
+
+    letter-spacing: 0 !important;
+
+    text-transform: uppercase;
+  }
+
+
+  /* Menu items flatter / less card-like */
+  .mega-service {
+    min-height: 72px !important;
+
+    grid-template-columns:
+      34px
+      minmax(0, 1fr)
+      20px !important;
+
+    gap: 12px !important;
+
+    padding:
+      9px
+      4px !important;
+
+    margin-bottom: 8px !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    background: transparent !important;
+  }
+
+
+  .mega-service:hover {
+    background:
+      rgba(0, 0, 0, 0.025) !important;
+  }
+
+
+  /* Icons simpler / smaller */
+  .mega-icon {
+    width: 30px !important;
+    height: 30px !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    background: transparent !important;
+
+    font-size: 16px !important;
+  }
+
+
+  /* Main item text */
+  .mega-service-content strong {
+    font-size: 15px !important;
+    font-weight: 500 !important;
+
+    color: #262826 !important;
+  }
+
+
+  /* Supporting item text */
+  .mega-service-content small {
+    margin-top: 2px;
+
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+
+    color:
+      rgba(38, 40, 38, 0.52) !important;
+  }
+
+
+  .mega-arrow {
+    font-size: 16px !important;
+
+    color:
+      rgba(31, 33, 31, 0.72) !important;
+  }
+
+
+  /* Bottom consultation area flatter */
+  .mega-consultation-card {
+    margin-top: 18px !important;
+
+    padding:
+      16px
+      18px !important;
+
+    border:
+      1px solid
+      rgba(0, 0, 0, 0.08) !important;
+
+    border-radius: 4px !important;
+
+    background:
+      #fafafa !important;
+  }
+
+}
