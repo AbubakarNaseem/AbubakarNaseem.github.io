@@ -4795,3 +4795,339 @@ span:nth-child(3) {
   }
 
 }
+
+/* ============================================================
+   ABOUT MEGA MENU — FLOWTRIX-STYLE STRUCTURE
+   Left links + right proof panel
+   ============================================================ */
+
+@media (min-width: 901px) {
+
+  .about-flowtrix-inner {
+    display: grid !important;
+
+    grid-template-columns:
+      minmax(0, 1.15fr)
+      minmax(420px, 1fr) !important;
+
+    gap: 0 !important;
+
+    min-height: 340px !important;
+
+    padding:
+      0
+      max(34px, calc((100vw - 1280px) / 2))
+      0 !important;
+
+    background: #ffffff !important;
+  }
+
+
+  /* LEFT PANEL */
+
+  .about-links-panel {
+    padding:
+      24px
+      38px
+      28px
+      0;
+  }
+
+
+  .about-panel-label {
+    margin: 0 0 18px;
+
+    padding-bottom: 10px;
+
+    border-bottom:
+      1px solid rgba(0, 0, 0, 0.12);
+
+    color:
+      rgba(28, 30, 28, 0.56);
+
+    font-family:
+      "Laygrotesk Trial",
+      Arial,
+      sans-serif;
+
+    font-size: 15px;
+    font-weight: 400;
+
+    line-height: 20px;
+
+    text-transform: uppercase;
+  }
+
+
+  .about-menu-link {
+    min-height: 48px;
+
+    display: grid;
+
+    grid-template-columns:
+      24px
+      minmax(0, 1fr);
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding:
+      6px
+      4px;
+
+    margin-bottom: 2px;
+
+    border-radius: 4px;
+
+    color: #242624;
+
+    font-family:
+      "Laygrotesk Trial",
+      Arial,
+      sans-serif;
+
+    font-size: 16px;
+    font-weight: 500;
+
+    line-height: 20px;
+
+    transition:
+      background-color 0.18s ease,
+      transform 0.18s ease;
+  }
+
+
+  .about-menu-link:hover {
+    background:
+      rgba(0, 0, 0, 0.03);
+
+    transform:
+      translateX(2px);
+  }
+
+
+  .about-menu-icon {
+    width: 22px;
+    height: 22px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #242624;
+
+    font-size: 15px;
+
+    line-height: 1;
+  }
+
+
+  /* RIGHT PANEL */
+
+  .about-proof-panel {
+    min-height: 340px;
+
+    padding:
+      24px
+      22px
+      24px
+      24px;
+
+    border-left:
+      1px solid rgba(0, 0, 0, 0.08);
+
+    background:
+      #f4f4f2;
+  }
+
+
+  .about-proof-card {
+    display: block;
+
+    width: 100%;
+    max-width: 560px;
+
+    overflow: hidden;
+
+    border-radius: 4px;
+
+    background:
+      #ffffff;
+
+    color:
+      #222422;
+  }
+
+
+  /* BRANDED VISUAL */
+
+  .about-proof-visual {
+    min-height: 190px;
+
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 28px;
+
+    padding:
+      28px;
+
+    background:
+      linear-gradient(
+        135deg,
+        #13211d 0%,
+        #0e1816 58%,
+        #18352b 100%
+      );
+
+    color: #ffffff;
+  }
+
+
+  .about-proof-mark {
+    width: 76px;
+    height: 76px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 76px;
+
+    border:
+      1px solid rgba(15, 211, 117, 0.45);
+
+    border-radius: 10px;
+
+    color: #0fd375;
+
+    font-family:
+      "Laygrotesk Trial",
+      Arial,
+      sans-serif;
+
+    font-size: 28px;
+    font-weight: 600;
+
+    line-height: 1;
+
+    letter-spacing: -0.04em;
+  }
+
+
+  .about-proof-copy {
+    flex: 1;
+
+    text-align: left;
+  }
+
+
+  .about-proof-copy strong {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #ffffff;
+
+    font-family:
+      "Laygrotesk Trial",
+      Arial,
+      sans-serif;
+
+    font-size: 20px;
+    font-weight: 600;
+
+    line-height: 24px;
+  }
+
+
+  .about-proof-copy span {
+    display: block;
+
+    color:
+      rgba(255, 255, 255, 0.68);
+
+    font-family:
+      "Laygrotesk Trial",
+      Arial,
+      sans-serif;
+
+    font-size: 13px;
+    font-weight: 400;
+
+    line-height: 19px;
+  }
+
+
+  /* STATS */
+
+  .about-proof-stats {
+    display: grid;
+
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    background:
+      #ffffff;
+  }
+
+
+  .about-proof-stats > div {
+    min-height: 86px;
+
+    padding:
+      14px
+      16px;
+
+    border-right:
+      1px solid rgba(0, 0, 0, 0.08);
+  }
+
+
+  .about-proof-stats > div:last-child {
+    border-right: 0;
+  }
+
+
+  .about-proof-stats strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #1d211f;
+
+    font-family:
+      "Laygrotesk Trial",
+      Arial,
+      sans-serif;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    line-height: 22px;
+  }
+
+
+  .about-proof-stats span {
+    display: block;
+
+    color:
+      rgba(29, 33, 31, 0.55);
+
+    font-family:
+      "Laygrotesk Trial",
+      Arial,
+      sans-serif;
+
+    font-size: 11px;
+    font-weight: 400;
+
+    line-height: 15px;
+  }
+
+}
