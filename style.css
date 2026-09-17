@@ -5131,3 +5131,366 @@ span:nth-child(3) {
   }
 
 }
+
+/* ============================================================
+   RESOURCES MEGA MENU — FLOWTRIX-STYLE STRUCTURE
+   Links + proof/experience + featured story
+   ============================================================ */
+
+@media (min-width: 901px) {
+
+  .resources-flowtrix-inner {
+    display: grid !important;
+
+    grid-template-columns:
+      minmax(260px, 0.8fr)
+      minmax(360px, 1.1fr)
+      minmax(360px, 1fr) !important;
+
+    gap: 0 !important;
+
+    min-height: 375px !important;
+
+    padding:
+      0
+      max(34px, calc((100vw - 1280px) / 2))
+      0 !important;
+
+    background: #ffffff !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     SHARED PANEL LABEL
+     --------------------------------------------------------- */
+
+  .resources-panel-label {
+    margin: 0 0 16px;
+
+    padding-bottom: 10px;
+
+    border-bottom:
+      1px solid rgba(0, 0, 0, 0.12);
+
+    color:
+      rgba(28, 30, 28, 0.56);
+
+    font-family:
+      "Laygrotesk Trial",
+      Arial,
+      sans-serif;
+
+    font-size: 15px;
+    font-weight: 400;
+
+    line-height: 20px;
+
+    text-transform: uppercase;
+  }
+
+
+  /* ---------------------------------------------------------
+     LEFT — RESOURCE LINKS
+     --------------------------------------------------------- */
+
+  .resources-links-panel {
+    padding:
+      24px
+      32px
+      28px
+      0;
+  }
+
+
+  .resources-menu-link {
+    min-height: 48px;
+
+    display: grid;
+
+    grid-template-columns:
+      24px
+      minmax(0, 1fr);
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding:
+      6px
+      4px;
+
+    margin-bottom: 2px;
+
+    border-radius: 4px;
+
+    color: #242624;
+
+    font-family:
+      "Laygrotesk Trial",
+      Arial,
+      sans-serif;
+
+    font-size: 16px;
+    font-weight: 500;
+
+    line-height: 20px;
+
+    transition:
+      background-color 0.18s ease,
+      transform 0.18s ease;
+  }
+
+
+  .resources-menu-link:hover {
+    background:
+      rgba(0, 0, 0, 0.03);
+
+    transform:
+      translateX(2px);
+  }
+
+
+  .resources-menu-icon {
+    width: 22px;
+    height: 22px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #242624;
+
+    font-size: 15px;
+
+    line-height: 1;
+  }
+
+
+  /* ---------------------------------------------------------
+     MIDDLE — PROOF & EXPERIENCE
+     --------------------------------------------------------- */
+
+  .resources-proof-panel {
+    padding:
+      24px
+      34px
+      28px;
+
+    border-left:
+      1px solid rgba(0, 0, 0, 0.08);
+  }
+
+
+  .resources-proof-list {
+    display: flex;
+
+    flex-direction: column;
+  }
+
+
+  .resources-proof-row {
+    min-height: 92px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 24px;
+
+    padding:
+      16px
+      0;
+
+    border-bottom:
+      1px solid rgba(0, 0, 0, 0.10);
+  }
+
+
+  .resources-proof-row:first-child {
+    padding-top: 8px;
+  }
+
+
+  .resources-proof-row strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #1d211f;
+
+    font-family:
+      "Laygrotesk Trial",
+      Arial,
+      sans-serif;
+
+    font-size: 23px;
+    font-weight: 600;
+
+    line-height: 27px;
+  }
+
+
+  .resources-proof-row span:not(.resources-proof-mark) {
+    display: block;
+
+    color:
+      rgba(29, 33, 31, 0.60);
+
+    font-family:
+      "Laygrotesk Trial",
+      Arial,
+      sans-serif;
+
+    font-size: 13px;
+    font-weight: 400;
+
+    line-height: 18px;
+  }
+
+
+  .resources-proof-mark {
+    flex: 0 0 auto;
+
+    color:
+      rgba(29, 33, 31, 0.52);
+
+    font-family:
+      "Laygrotesk Trial",
+      Arial,
+      sans-serif;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    line-height: 14px;
+
+    letter-spacing: 0.03em;
+  }
+
+
+  /* ---------------------------------------------------------
+     RIGHT — FEATURED STORY
+     --------------------------------------------------------- */
+
+  .resources-feature-panel {
+    min-height: 375px;
+
+    padding:
+      24px
+      22px
+      24px
+      24px;
+
+    border-left:
+      1px solid rgba(0, 0, 0, 0.08);
+
+    background:
+      #f4f4f2;
+  }
+
+
+  .resources-feature-card {
+    display: block;
+
+    width: 100%;
+    max-width: 425px;
+
+    overflow: hidden;
+
+    border-radius: 4px;
+
+    background:
+      #ffffff;
+
+    color:
+      #222422;
+
+    transition:
+      transform 0.18s ease;
+  }
+
+
+  .resources-feature-card:hover {
+    transform:
+      translateY(-2px);
+  }
+
+
+  .resources-feature-image-wrap {
+    width: 100%;
+
+    aspect-ratio:
+      16 / 8.5;
+
+    overflow: hidden;
+
+    background:
+      #e8e8e6;
+  }
+
+
+  .resources-feature-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+      transform 0.32s ease;
+  }
+
+
+  .resources-feature-card:hover
+  .resources-feature-image {
+    transform:
+      scale(1.02);
+  }
+
+
+  .resources-feature-content {
+    padding:
+      14px
+      16px
+      17px;
+  }
+
+
+  .resources-feature-content strong {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #222422;
+
+    font-family:
+      "Laygrotesk Trial",
+      Arial,
+      sans-serif;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    line-height: 22px;
+  }
+
+
+  .resources-feature-content p {
+    margin: 0;
+
+    color:
+      rgba(34, 36, 34, 0.58);
+
+    font-family:
+      "Laygrotesk Trial",
+      Arial,
+      sans-serif;
+
+    font-size: 13px;
+    font-weight: 400;
+
+    line-height: 20px;
+  }
+
+}
