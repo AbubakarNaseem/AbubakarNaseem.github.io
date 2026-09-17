@@ -2851,3 +2851,281 @@ span:nth-child(3) {
     flex-basis: 82vw;
   }
 }
+/* ============================================================
+   FIRST LOOK — FINAL MICRO CORRECTIONS
+   Nav typography + video icon + headline line breaks
+   ============================================================ */
+
+
+/* ============================================================
+   BOOK A CALL VIDEO ICON
+   ============================================================ */
+
+.nav-call-button::after {
+  display: none !important;
+}
+
+
+.nav-call-button,
+.mobile-call-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+}
+
+
+.call-video-icon {
+  width: 25px;
+  height: 25px;
+
+  flex: 0 0 25px;
+
+  position: relative;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 3px;
+
+  background: #f7faf7;
+}
+
+
+.call-video-camera {
+  position: relative;
+
+  width: 12px;
+  height: 9px;
+
+  display: block;
+
+  border-radius: 2px;
+
+  background: #10201c;
+}
+
+
+.call-video-camera::after {
+  content: "";
+
+  position: absolute;
+
+  top: 2px;
+  right: -4px;
+
+  width: 0;
+  height: 0;
+
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-left: 4px solid #10201c;
+}
+
+
+/* ============================================================
+   DESKTOP NAVIGATION — FLOWTRIX PROPORTION
+   ============================================================ */
+
+@media (min-width: 901px) {
+
+  .desktop-nav {
+    gap: 20px;
+  }
+
+
+  .nav-link,
+  .nav-dropdown-trigger {
+    min-height: 58px;
+
+    padding-left: 5px;
+    padding-right: 5px;
+
+    color: #ffffff !important;
+
+    font-size: 14px !important;
+
+    font-weight: 600 !important;
+
+    line-height: 1;
+
+    letter-spacing: -0.025em;
+  }
+
+
+  .nav-dropdown-trigger {
+    gap: 9px;
+  }
+
+
+  .nav-chevron {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #ffffff !important;
+
+    font-size: 13px !important;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    transform: translateY(-1px);
+  }
+
+
+  .nav-call-button {
+    width: auto;
+    min-width: 136px;
+
+    height: 40px;
+    min-height: 40px;
+
+    padding:
+      0 7px
+      0 14px;
+
+    gap: 9px;
+
+    color: #ffffff;
+
+    font-size: 13px !important;
+
+    font-weight: 600;
+
+    background:
+      rgba(15, 211, 117, 0.07);
+
+    border:
+      1px solid
+      rgba(15, 211, 117, 0.85);
+
+    border-radius: 5px;
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE BOOK A CALL ICON
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  .mobile-call-button {
+    min-width: 118px;
+
+    min-height: 38px;
+
+    padding:
+      0 6px
+      0 11px;
+
+    gap: 7px;
+
+    color: #ffffff;
+
+    background:
+      rgba(15, 211, 117, 0.07);
+
+    border:
+      1px solid
+      rgba(15, 211, 117, 0.85);
+
+    border-radius: 4px;
+  }
+
+
+  .mobile-call-button .call-video-icon {
+    width: 23px;
+    height: 23px;
+
+    flex-basis: 23px;
+  }
+
+
+  .mobile-call-button .call-video-camera {
+    width: 11px;
+    height: 8px;
+  }
+
+}
+
+
+/* ============================================================
+   HEADLINE — EXACT LOCKED LINE STRUCTURE
+   ============================================================ */
+
+.hero-v2-title {
+  text-wrap: initial;
+}
+
+
+.hero-title-line {
+  display: block;
+
+  white-space: nowrap;
+}
+
+
+.hero-v2-title-highlight-inline {
+  color: var(--flow-green);
+}
+
+
+.hero-v2-title-highlight {
+  display: block;
+
+  color: var(--flow-green);
+
+  white-space: nowrap;
+}
+
+
+/* Desktop */
+
+@media (min-width: 901px) {
+
+  .hero-v2-title {
+    width: 736px;
+    max-width: 736px;
+
+    font-size: 68px;
+
+    font-weight: 600;
+
+    line-height: 74.8px;
+
+    letter-spacing: -0.68px;
+  }
+
+}
+
+
+/* Mobile — keep same deliberate line structure */
+
+@media (max-width: 900px) {
+
+  .hero-v2-title {
+    width: 100%;
+    max-width: 100%;
+
+    font-size: 42.3333px;
+
+    line-height: 46.5667px;
+
+    letter-spacing: -0.423333px;
+  }
+
+
+  .hero-title-line {
+    white-space: nowrap;
+  }
+
+}
