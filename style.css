@@ -4722,3 +4722,76 @@ span:nth-child(3) {
   }
 
 }
+
+/* ============================================================
+   SERVICES FINAL FLOWTRIX SPACING TUNE
+   ============================================================ */
+
+@media (min-width: 901px) {
+
+  .services-mega-inner {
+    grid-template-columns:
+      minmax(0, 1.75fr)
+      minmax(360px, 1fr) !important;
+
+    min-height: 410px !important;
+  }
+
+
+  .services-main-panel {
+    padding-top: 22px !important;
+    padding-bottom: 24px !important;
+    padding-right: 30px !important;
+  }
+
+
+  .services-columns {
+    column-gap: 48px !important;
+  }
+
+
+  .services-column-label {
+    margin-bottom: 12px !important;
+  }
+
+
+  .service-menu-link {
+    min-height: 46px !important;
+    margin-bottom: 0 !important;
+  }
+
+
+  .services-recent-panel {
+    min-height: 410px !important;
+
+    padding:
+      22px
+      22px
+      22px
+      24px !important;
+  }
+
+
+  .services-recent-label {
+    margin-bottom: 14px !important;
+  }
+
+
+  .services-recent-card {
+    max-width: 330px !important;
+  }
+
+
+  .services-recent-image-wrap {
+    aspect-ratio: 16 / 8.2 !important;
+  }
+
+
+  .services-recent-content {
+    padding:
+      14px
+      16px
+      16px !important;
+  }
+
+}
