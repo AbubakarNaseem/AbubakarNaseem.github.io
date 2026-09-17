@@ -3280,3 +3280,33 @@ span:nth-child(3) {
   }
 
 }
+
+/* ============================================================
+   FINAL MOBILE HERO 4-LINE LOCK
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+  .hero-v2-title {
+    width: 100%;
+    max-width: 100%;
+
+    font-size: 35px !important;
+    line-height: 1.10 !important;
+    letter-spacing: -0.6px !important;
+  }
+
+  .hero-title-line {
+    display: block;
+    white-space: nowrap !important;
+  }
+
+}
+
+@media (max-width: 380px) {
+
+  .hero-v2-title {
+    font-size: 33px !important;
+  }
+
+}
