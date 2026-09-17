@@ -3129,3 +3129,154 @@ span:nth-child(3) {
   }
 
 }
+
+/* ============================================================
+   FINAL ICON + MOBILE 4-LINE HEADLINE LOCK
+   ============================================================ */
+
+
+/* REMOVE OLD CSS-DRAWN VIDEO ICON */
+
+.call-video-icon,
+.call-video-camera {
+  display: none !important;
+}
+
+
+/* REAL CANVA VIDEO ICON */
+
+.call-video-icon-image {
+  display: block;
+
+  width: 25px;
+  height: 25px;
+
+  flex: 0 0 25px;
+
+  object-fit: contain;
+}
+
+
+/* DESKTOP BOOK A CALL */
+
+@media (min-width: 901px) {
+
+  .nav-call-button {
+    width: auto;
+    min-width: 138px;
+
+    padding:
+      0 7px
+      0 14px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+  }
+
+
+  .nav-call-button::after {
+    display: none !important;
+    content: none !important;
+  }
+
+
+  .nav-call-button .call-video-icon-image {
+    width: 25px;
+    height: 25px;
+
+    flex-basis: 25px;
+  }
+
+}
+
+
+/* MOBILE TOP BOOK A CALL */
+
+@media (max-width: 900px) {
+
+  .mobile-call-button {
+    min-width: 118px;
+
+    padding:
+      0 6px
+      0 11px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+  }
+
+
+  .mobile-call-button .call-video-icon-image {
+    width: 23px;
+    height: 23px;
+
+    flex-basis: 23px;
+  }
+
+}
+
+
+/* ============================================================
+   HEADLINE — EXACT 4 LINES
+   ============================================================ */
+
+.hero-title-line {
+  display: block;
+
+  white-space: nowrap;
+}
+
+
+.hero-v2-title-highlight-inline,
+.hero-v2-title-highlight {
+  color: var(--flow-green);
+}
+
+
+/* MOBILE
+   Slightly smaller because Inter is wider than Flowtrix's
+   Lay Grotesk and was forcing line 3 to wrap.
+*/
+
+@media (max-width: 600px) {
+
+  .hero-v2-title {
+    width: 100%;
+    max-width: 100%;
+
+    font-size: 39px;
+
+    line-height: 1.10;
+
+    letter-spacing: -0.45px;
+  }
+
+
+  .hero-title-line {
+    display: block;
+
+    white-space: nowrap;
+  }
+
+}
+
+
+/* EXTRA SAFETY FOR NARROW PHONES */
+
+@media (max-width: 380px) {
+
+  .hero-v2-title {
+    font-size: 36px;
+
+    line-height: 1.10;
+  }
+
+}
