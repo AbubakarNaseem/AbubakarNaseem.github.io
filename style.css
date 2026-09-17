@@ -3310,3 +3310,214 @@ span:nth-child(3) {
   }
 
 }
+
+/* ============================================================
+   FLOWTRIX TYPOGRAPHY + CTA MICRO-MATCH
+   Verified from DevTools
+   1. Navbar text
+   2. Book a call text
+   3. Scan my website button + hover
+   4. Project card footer text
+   ============================================================ */
+
+
+/* ============================================================
+   1. NAVBAR TEXT
+   Flowtrix:
+   Lay Grotesk Trial Medium
+   14px / 500 / 19.6px
+   ============================================================ */
+
+@media (min-width: 901px) {
+
+  .nav-link,
+  .nav-dropdown-trigger {
+    font-family:
+      "Laygrotesk Trial",
+      Arial,
+      sans-serif !important;
+
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    line-height: 19.6px !important;
+
+    color: #ffffff !important;
+
+    letter-spacing: normal !important;
+  }
+
+
+  .nav-chevron {
+    font-family:
+      Arial,
+      sans-serif;
+
+    font-size: 14px !important;
+    font-weight: 700 !important;
+
+    line-height: 1 !important;
+
+    color: #ffffff !important;
+  }
+
+}
+
+
+/* ============================================================
+   2. BOOK A CALL TEXT
+   Flowtrix:
+   Lay Grotesk Trial Semibold
+   14.08px / 600 / 20.416px
+   ============================================================ */
+
+.nav-call-button,
+.mobile-call-button {
+  font-family:
+    "Laygrotesk Trial",
+    Arial,
+    sans-serif !important;
+
+  font-weight: 600 !important;
+}
+
+
+@media (min-width: 901px) {
+
+  .nav-call-button {
+    font-size: 14.08px !important;
+    line-height: 20.416px !important;
+
+    color: rgb(242, 242, 242) !important;
+  }
+
+}
+
+
+/* ============================================================
+   3. SCAN MY WEBSITE BUTTON
+   Flowtrix:
+   Lay Grotesk Trial Semibold
+   18px / 600 / 22.4px
+   56px tall
+   9px 24px padding
+   ~6px radius
+   ============================================================ */
+
+.hero-v2-audit-button {
+  min-height: 56px !important;
+  height: 56px !important;
+
+  padding:
+    9px
+    24px !important;
+
+  border-radius: 6px !important;
+
+  border:
+    1px solid
+    #ffffff !important;
+
+  background:
+    #ffffff !important;
+
+  color:
+    rgb(10, 10, 10) !important;
+
+  font-family:
+    "Laygrotesk Trial",
+    Arial,
+    sans-serif !important;
+
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  line-height: 22.4px !important;
+
+  letter-spacing: normal !important;
+
+  transition:
+    background-color 0.22s ease,
+    color 0.22s ease,
+    border-color 0.22s ease !important;
+}
+
+
+/* FLOWTRIX-LIKE GREEN HOVER */
+
+.hero-v2-audit-button:hover {
+  background:
+    #05ed77 !important;
+
+  border-color:
+    #05ed77 !important;
+
+  color:
+    #ffffff !important;
+}
+
+
+/* ============================================================
+   4. PROJECT CARD FOOTER TEXT
+   Flowtrix:
+   Lay Grotesk Trial Medium
+   16px / 500 / 20px
+   ============================================================ */
+
+.project-card-name,
+.project-card-tags span {
+  font-family:
+    "Laygrotesk Trial",
+    Arial,
+    sans-serif !important;
+
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 20px !important;
+
+  letter-spacing: normal !important;
+}
+
+
+/* Keep the small pill shape while using the verified text style */
+
+.project-card-tags span {
+  min-height: 25px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    2px
+    8px;
+}
+
+
+/* ============================================================
+   MOBILE SAFETY
+   Keep card footer readable without breaking layout
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  .project-card-name {
+    font-size: 14px !important;
+    line-height: 18px !important;
+  }
+
+
+  .project-card-tags span {
+    font-size: 12px !important;
+    line-height: 16px !important;
+  }
+
+
+  .hero-v2-audit-button {
+    min-height: 48px !important;
+    height: 48px !important;
+
+    font-size: 15px !important;
+    line-height: 19px !important;
+  }
+
+}
