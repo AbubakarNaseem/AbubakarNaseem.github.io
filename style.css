@@ -3982,3 +3982,369 @@ span:nth-child(3) {
   }
 
 }
+
+/* ============================================================
+   INDUSTRIES MEGA MENU — FLOWTRIX-STYLE STRUCTURE
+   2-column industries list + right featured case study
+   ============================================================ */
+
+@media (min-width: 901px) {
+
+  /* ---------------------------------------------------------
+     INDUSTRIES PANEL GRID
+     --------------------------------------------------------- */
+
+  .industries-mega-inner {
+    display: grid !important;
+
+    grid-template-columns:
+      minmax(0, 1.65fr)
+      minmax(320px, 0.9fr) !important;
+
+    gap: 0 !important;
+
+    min-height: 400px !important;
+
+    padding:
+      26px
+      max(34px, calc((100vw - 1280px) / 2))
+      28px !important;
+
+    background: #ffffff !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     LEFT SIDE
+     --------------------------------------------------------- */
+
+  .industries-links-panel {
+    padding-right: 42px;
+  }
+
+
+  .industries-menu-heading {
+    width: 100%;
+
+    margin-bottom: 24px;
+  }
+
+
+  .industries-menu-heading .mega-column-label {
+    margin: 0 !important;
+
+    padding-bottom: 12px !important;
+
+    border-bottom:
+      1px solid rgba(0, 0, 0, 0.12) !important;
+
+    color:
+      rgba(20, 22, 20, 0.48) !important;
+
+    font-size: 11px !important;
+    font-weight: 500 !important;
+
+    line-height: 1.2 !important;
+
+    letter-spacing: 0.02em !important;
+  }
+
+
+  /* Two equal industry columns */
+
+  .industries-link-grid {
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    column-gap: 54px;
+
+    align-items: start;
+  }
+
+
+  .industries-link-column {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+  }
+
+
+  /* ---------------------------------------------------------
+     INDUSTRY LINKS
+     --------------------------------------------------------- */
+
+  .industry-menu-link {
+    min-height: 58px;
+
+    display: grid;
+
+    grid-template-columns:
+      30px
+      minmax(0, 1fr);
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding:
+      5px
+      8px;
+
+    border-radius: 4px;
+
+    color: #1d211f;
+
+    font-family:
+      "Laygrotesk Trial",
+      Arial,
+      sans-serif;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    line-height: 20px;
+
+    transition:
+      background-color 0.18s ease,
+      transform 0.18s ease;
+  }
+
+
+  .industry-menu-link:hover {
+    background:
+      rgba(0, 0, 0, 0.035);
+
+    transform:
+      translateX(2px);
+  }
+
+
+  .industry-menu-icon {
+    width: 28px;
+    height: 28px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #151917;
+
+    font-size: 15px;
+    line-height: 1;
+  }
+
+
+  /* ---------------------------------------------------------
+     RIGHT FEATURE PANEL
+     --------------------------------------------------------- */
+
+  .industries-feature-panel {
+    padding-left: 34px;
+
+    border-left:
+      1px solid rgba(0, 0, 0, 0.09);
+  }
+
+
+  .industries-feature-label {
+    margin-bottom: 15px;
+
+    color:
+      rgba(20, 22, 20, 0.48);
+
+    font-family:
+      "Laygrotesk Trial",
+      Arial,
+      sans-serif;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    line-height: 1.2;
+
+    letter-spacing: 0.02em;
+
+    text-transform: uppercase;
+  }
+
+
+  /* ---------------------------------------------------------
+     FEATURE CARD
+     --------------------------------------------------------- */
+
+  .industries-feature-card {
+    display: block;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    border-radius: 4px;
+
+    background:
+      #f3f3f1;
+
+    color: #171a18;
+
+    transition:
+      transform 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+
+  .industries-feature-card:hover {
+    transform:
+      translateY(-2px);
+
+    background:
+      #eeeeeb;
+  }
+
+
+  .industries-feature-image-wrap {
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+
+    background:
+      #e8e8e5;
+  }
+
+
+  .industries-feature-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+      transform 0.35s ease;
+  }
+
+
+  .industries-feature-card:hover
+  .industries-feature-image {
+    transform:
+      scale(1.02);
+  }
+
+
+  /* ---------------------------------------------------------
+     FEATURE CARD TEXT
+     --------------------------------------------------------- */
+
+  .industries-feature-content {
+    min-height: 112px;
+
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      28px;
+
+    align-items: end;
+
+    gap: 16px;
+
+    padding:
+      16px
+      17px
+      18px;
+  }
+
+
+  .industries-feature-kicker {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color:
+      rgba(23, 26, 24, 0.50);
+
+    font-family:
+      "Laygrotesk Trial",
+      Arial,
+      sans-serif;
+
+    font-size: 10px;
+    font-weight: 500;
+
+    line-height: 14px;
+
+    text-transform: uppercase;
+  }
+
+
+  .industries-feature-content strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #171a18;
+
+    font-family:
+      "Laygrotesk Trial",
+      Arial,
+      sans-serif;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    line-height: 22px;
+  }
+
+
+  .industries-feature-content p {
+    max-width: 310px;
+
+    margin: 0;
+
+    color:
+      rgba(23, 26, 24, 0.58);
+
+    font-family:
+      "Laygrotesk Trial",
+      Arial,
+      sans-serif;
+
+    font-size: 12px;
+    font-weight: 400;
+
+    line-height: 17px;
+  }
+
+
+  .industries-feature-arrow {
+    align-self: end;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+
+    color: #171a18;
+
+    font-size: 18px;
+
+    transition:
+      transform 0.18s ease;
+  }
+
+
+  .industries-feature-card:hover
+  .industries-feature-arrow {
+    transform:
+      translateX(3px);
+  }
+
+}
