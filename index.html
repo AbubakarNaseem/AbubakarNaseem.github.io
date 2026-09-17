@@ -89,18 +89,18 @@
 
   <style>
     /* ============================================================
-       SCROLL-DRIVEN STORY SECTION — V4 DESKTOP
-       Flowtrix-style geometry + global word/token reveal
+       SCROLL-DRIVEN STORY SECTION — V5 DESKTOP REFINEMENT
+       Stable icon spacing + narrower copy + slower reveal
        ============================================================ */
 
     .story-scroll-section {
       --story-bg: #13201f;
       --story-grid: rgba(255, 255, 255, 0.070);
-      --story-muted: rgba(255, 255, 255, 0.165);
+      --story-muted: rgba(255, 255, 255, 0.205);
       --story-active: #ffffff;
 
       position: relative;
-      min-height: 700vh;
+      min-height: 820vh;
       overflow: clip;
       background: var(--story-bg);
       border-top: 1px solid var(--story-grid);
@@ -119,8 +119,6 @@
       width: 100%;
       height: 100%;
 
-      /* Flowtrix-like architectural grid:
-         vertical boundaries only; no line crossing through the copy. */
       background-image:
         linear-gradient(
           to right,
@@ -137,10 +135,10 @@
 
     .story-copy {
       position: absolute;
-      top: 48px;
-      left: calc(50% - 350px);
+      top: 66px;
+      left: calc(50% - 330px);
 
-      width: 640px;
+      width: 600px;
       max-width: calc(100vw - 72px);
 
       padding: 0;
@@ -156,7 +154,7 @@
     }
 
     .story-block {
-      margin: 0 0 28px;
+      margin: 0 0 26px;
     }
 
     .story-block:last-child {
@@ -192,39 +190,38 @@
       background-clip: text;
     }
 
-    /* Icon occupies no width and is not visible before its token is reached. */
+    /* Reserve the final icon space from frame one.
+       The icon itself stays completely invisible until triggered.
+       This prevents line movement while preserving zero visible icons. */
     .story-icon-token {
-      display: none;
-      width: 0;
-      margin: 0;
-      vertical-align: -3px;
-    }
-
-    .story-icon-token.is-visible {
       display: inline-flex;
-      width: 29px;
+      width: 27px;
       margin: 0 3px;
       align-items: center;
       justify-content: center;
-      animation: storyIconIn 0.12s ease-out both;
+      vertical-align: -3px;
+
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.90);
+
+      transition:
+        opacity 0.10s ease-out,
+        transform 0.10s ease-out;
+    }
+
+    .story-icon-token.is-visible {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
     }
 
     .story-inline-icon {
       display: block;
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       object-fit: contain;
-    }
-
-    @keyframes storyIconIn {
-      from {
-        opacity: 0;
-        transform: scale(0.82);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+      pointer-events: none;
     }
 
     .story-mobile-orbit {
@@ -232,7 +229,7 @@
     }
 
 
-    /* Mobile intentionally kept separate for later tuning. */
+    /* Mobile intentionally left for later tuning. */
     @media (max-width: 900px) {
 
       .story-scroll-section {
@@ -279,7 +276,7 @@
         white-space: normal;
       }
 
-      .story-icon-token.is-visible {
+      .story-icon-token {
         width: 23px;
         margin: 0 2px;
       }
@@ -2565,10 +2562,6 @@
       }
 
 
-      /* ---------------------------------------------------------
-         TOKENIZE TEXT WITHOUT CHANGING THE LOCKED LINE STRUCTURE
-         --------------------------------------------------------- */
-
       const revealSpans =
         Array.from(
           section.querySelectorAll(".story-reveal")
@@ -2610,10 +2603,6 @@
         }
       );
 
-
-      /* ---------------------------------------------------------
-         BUILD ONE GLOBAL READING SEQUENCE
-         --------------------------------------------------------- */
 
       const sequence = [];
 
@@ -2670,9 +2659,12 @@
           scrolled /
           totalScrollable;
 
-        /* Long cinematic hold at both ends. */
-        const start = 0.09;
-        const end = 0.92;
+        /*
+          Slower pacing than V4.
+          Longer hold before first reveal and after final reveal.
+        */
+        const start = 0.11;
+        const end = 0.90;
 
         const readingProgress =
           clamp(
@@ -2709,7 +2701,7 @@
                 index < completedCount ||
                 (
                   index === completedCount &&
-                  currentProgress > 0.18
+                  currentProgress > 0.42
                 )
               );
 
