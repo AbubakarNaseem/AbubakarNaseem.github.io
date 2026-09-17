@@ -89,18 +89,17 @@
 
   <style>
     /* ============================================================
-       SCROLL-DRIVEN STORY SECTION — V2
-       Slower line-by-line reveal, delayed icons, Flowtrix geometry
+       SCROLL-DRIVEN STORY SECTION — V3 DESKTOP TUNE
        ============================================================ */
 
     .story-scroll-section {
       --story-bg: #13201f;
       --story-grid: rgba(255, 255, 255, 0.072);
-      --story-muted: rgba(255, 255, 255, 0.13);
+      --story-muted: rgba(255, 255, 255, 0.185);
       --story-active: #ffffff;
 
       position: relative;
-      min-height: 430vh;
+      min-height: 520vh;
       overflow: clip;
       background: var(--story-bg);
       border-top: 1px solid var(--story-grid);
@@ -121,6 +120,7 @@
       height: 100%;
       display: grid;
       place-items: center;
+
       background-image:
         linear-gradient(
           to right,
@@ -149,18 +149,20 @@
     .story-copy {
       width: 640.734px;
       max-width: calc(100vw - 48px);
-      padding: 20px 0 28px;
+      padding: 12px 0 24px;
+
       font-family: "Laygrotesk Trial", Arial, sans-serif;
       font-size: 32px;
       font-weight: 600;
       line-height: 40px;
       letter-spacing: -0.3px;
+
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
     }
 
     .story-block {
-      margin: 0 0 34px;
+      margin: 0 0 38px;
     }
 
     .story-block:last-child {
@@ -189,30 +191,41 @@
       background-clip: text;
     }
 
-    .story-inline-icon {
-      --icon-visible: 0;
+    /* Icon slot takes zero width until activated. */
+    .story-icon-slot {
+      --icon-slot-width: 0px;
+      --icon-opacity: 0;
 
-      display: inline-block;
-      width: 25px;
-      height: 25px;
-      margin: 0 5px 0 4px;
-      object-fit: contain;
+      display: inline-flex;
+      width: var(--icon-slot-width);
+      overflow: visible;
       vertical-align: -3px;
-
-      opacity: var(--icon-visible);
-      visibility: hidden;
-      transform: scale(calc(0.86 + (var(--icon-visible) * 0.14)));
       transition:
-        opacity 0.15s ease,
-        transform 0.15s ease;
+        width 0.12s ease,
+        margin 0.12s ease;
     }
 
-    .story-inline-icon.story-icon-leading {
+    .story-icon-slot.is-visible {
+      --icon-slot-width: 34px;
+      margin-left: 4px;
+      margin-right: 2px;
+    }
+
+    .story-icon-slot-leading.is-visible {
       margin-left: 0;
     }
 
-    .story-inline-icon.is-visible {
-      visibility: visible;
+    .story-inline-icon {
+      width: 25px;
+      height: 25px;
+      min-width: 25px;
+      object-fit: contain;
+      opacity: var(--icon-opacity);
+      transform: scale(calc(0.86 + (var(--icon-opacity) * 0.14)));
+      transition:
+        opacity 0.12s ease,
+        transform 0.12s ease;
+      pointer-events: none;
     }
 
     .story-mobile-orbit {
@@ -220,6 +233,7 @@
     }
 
 
+    /* Mobile stays available but is intentionally not tuned yet. */
     @media (max-width: 900px) {
 
       .story-scroll-section {
@@ -236,25 +250,6 @@
       .story-grid-frame {
         display: block;
         padding-top: 190px;
-        background-image:
-          linear-gradient(
-            to right,
-            transparent 21px,
-            var(--story-grid) 21px,
-            var(--story-grid) 22px,
-            transparent 22px,
-            transparent calc(100% - 22px),
-            var(--story-grid) calc(100% - 22px),
-            var(--story-grid) calc(100% - 21px),
-            transparent calc(100% - 21px)
-          ),
-          linear-gradient(
-            to bottom,
-            transparent 192px,
-            var(--story-grid) 192px,
-            var(--story-grid) 193px,
-            transparent 193px
-          );
       }
 
       .story-copy {
@@ -279,9 +274,11 @@
       .story-inline-icon {
         width: 18px;
         height: 18px;
-        margin-left: 3px;
-        margin-right: 3px;
-        vertical-align: -3px;
+        min-width: 18px;
+      }
+
+      .story-icon-slot.is-visible {
+        --icon-slot-width: 25px;
       }
 
       .story-mobile-orbit {
@@ -322,33 +319,6 @@
         border-radius: 50%;
         background: var(--story-bg);
         filter: blur(10px);
-      }
-
-    }
-
-
-    @media (max-width: 600px) {
-
-      .story-scroll-section {
-        min-height: 410vh;
-      }
-
-      .story-copy {
-        margin: 0 48px;
-        padding-top: 30px;
-        font-size: 19px;
-        line-height: 24px;
-        letter-spacing: -0.2px;
-      }
-
-      .story-row {
-        min-height: 24px;
-      }
-
-      .story-mobile-orbit {
-        top: -135px;
-        width: 300px;
-        height: 300px;
       }
 
     }
@@ -1689,7 +1659,7 @@
 
     <!-- =====================================================
          SCROLL-DRIVEN ECOMMERCE STORY
-         Line-based reveal tuned to Flowtrix reference
+         Desktop V3 — tighter line rhythm + true delayed icons
     ====================================================== -->
 
     <section
@@ -1709,72 +1679,80 @@
             <div class="story-block">
               <div class="story-row">
                 <span class="story-reveal">Every eCommerce brand has a story.</span>
-                <img src="story-icon-star.png.png" alt="" class="story-inline-icon" aria-hidden="true">
+                <span class="story-icon-slot">
+                  <img src="story-icon-star.png.png" alt="" class="story-inline-icon" aria-hidden="true">
+                </span>
               </div>
               <div class="story-row">
                 <span class="story-reveal">Your growth should make it clear.</span>
               </div>
             </div>
 
-
             <div class="story-block">
               <div class="story-row">
                 <span class="story-reveal">Research can find opportunities fast.</span>
-                <img src="story-icon-lightning.png.png" alt="" class="story-inline-icon" aria-hidden="true">
+                <span class="story-icon-slot">
+                  <img src="story-icon-lightning.png.png" alt="" class="story-inline-icon" aria-hidden="true">
+                </span>
               </div>
               <div class="story-row">
-                <span class="story-reveal">But when customer insight, creative and</span>
+                <span class="story-reveal">But when insight, creative and store execution</span>
               </div>
               <div class="story-row">
-                <span class="story-reveal">store execution work separately,</span>
-                <img src="story-icon-standing-out.png.png" alt="" class="story-inline-icon" aria-hidden="true">
-              </div>
-              <div class="story-row">
+                <span class="story-reveal">work separately,</span>
+                <span class="story-icon-slot">
+                  <img src="story-icon-standing-out.png.png" alt="" class="story-inline-icon" aria-hidden="true">
+                </span>
                 <span class="story-reveal">growth becomes harder.</span>
               </div>
             </div>
-
 
             <div class="story-block">
               <div class="story-row">
                 <span class="story-reveal">This is why connected execution matters</span>
               </div>
               <div class="story-row">
-                <img src="story-icon-browser.png.png" alt="" class="story-inline-icon story-icon-leading" aria-hidden="true">
+                <span class="story-icon-slot story-icon-slot-leading">
+                  <img src="story-icon-browser.png.png" alt="" class="story-inline-icon" aria-hidden="true">
+                </span>
                 <span class="story-reveal">now more than ever.</span>
               </div>
             </div>
 
-
             <div class="story-block">
               <div class="story-row">
                 <span class="story-reveal">Acquisition needs more than traffic.</span>
-                <img src="story-icon-money.png.png" alt="" class="story-inline-icon" aria-hidden="true">
-                <span class="story-reveal">It</span>
+                <span class="story-icon-slot">
+                  <img src="story-icon-money.png.png" alt="" class="story-inline-icon" aria-hidden="true">
+                </span>
               </div>
               <div class="story-row">
-                <span class="story-reveal">needs stronger creative and a store built</span>
+                <span class="story-reveal">It needs stronger creative and a store built</span>
               </div>
               <div class="story-row">
-                <img src="story-icon-chart.png.png" alt="" class="story-inline-icon story-icon-leading" aria-hidden="true">
+                <span class="story-icon-slot story-icon-slot-leading">
+                  <img src="story-icon-chart.png.png" alt="" class="story-inline-icon" aria-hidden="true">
+                </span>
                 <span class="story-reveal">to turn attention into action.</span>
               </div>
             </div>
 
-
             <div class="story-block">
               <div class="story-row">
                 <span class="story-reveal">We connect</span>
-                <img src="story-icon-creative.png.png" alt="" class="story-inline-icon" aria-hidden="true">
-                <span class="story-reveal">research, Meta ads, CRO</span>
+                <span class="story-icon-slot">
+                  <img src="story-icon-creative.png.png" alt="" class="story-inline-icon" aria-hidden="true">
+                </span>
+                <span class="story-reveal">research, Meta ads, CRO and</span>
               </div>
               <div class="story-row">
-                <span class="story-reveal">and Shopify so every decision moves the</span>
+                <span class="story-reveal">Shopify so each decision moves the same</span>
               </div>
               <div class="story-row">
-                <span class="story-reveal">same customer journey forward</span>
-                <img src="story-icon-trust.png.png" alt="" class="story-inline-icon" aria-hidden="true">
-                <span class="story-reveal">.</span>
+                <span class="story-reveal">customer journey forward.</span>
+                <span class="story-icon-slot">
+                  <img src="story-icon-trust.png.png" alt="" class="story-inline-icon" aria-hidden="true">
+                </span>
               </div>
             </div>
 
@@ -2577,16 +2555,9 @@
       rows.forEach(
         function(row) {
 
-          const children =
-            Array.from(
-              row.children
-            );
-
-          children.forEach(
+          Array.from(row.children).forEach(
             function(child) {
-
               sequence.push(child);
-
             }
           );
 
@@ -2626,28 +2597,32 @@
         const progress =
           scrolled / totalScrollable;
 
-        const total =
-          sequence.length;
-
-        /* Hold a little at the beginning and end, then reveal slowly. */
-        const revealStart = 0.08;
-        const revealEnd = 0.90;
+        /*
+          Long hold at the start/end.
+          Each line gets its own slot.
+          Icons appear only after their position is reached.
+        */
+        const revealStart = 0.10;
+        const revealEnd = 0.91;
+        const total = sequence.length;
+        const slot =
+          (revealEnd - revealStart) / total;
 
         sequence.forEach(
           function(item, index) {
 
-            const slot =
-              (revealEnd - revealStart) /
-              total;
-
             const start =
-              revealStart +
-              (index * slot);
+              revealStart + (index * slot);
+
+            const isIconSlot =
+              item.classList.contains(
+                "story-icon-slot"
+              );
 
             const duration =
-              item.classList.contains("story-inline-icon")
-                ? slot * 0.34
-                : slot * 0.92;
+              isIconSlot
+                ? slot * 0.18
+                : slot * 0.78;
 
             const local =
               clamp(
@@ -2657,26 +2632,29 @@
                 1
               );
 
-            if (
-              item.classList.contains(
-                "story-inline-icon"
-              )
-            ) {
+            if (isIconSlot) {
 
               const visible =
-                local >= 0.02
-                  ? Math.min(local * 3.2, 1)
+                local > 0
+                  ? Math.min(local * 4.2, 1)
                   : 0;
-
-              item.style.setProperty(
-                "--icon-visible",
-                visible.toFixed(3)
-              );
 
               item.classList.toggle(
                 "is-visible",
                 visible > 0
               );
+
+              const icon =
+                item.querySelector(
+                  ".story-inline-icon"
+                );
+
+              if (icon) {
+                icon.style.setProperty(
+                  "--icon-opacity",
+                  visible.toFixed(3)
+                );
+              }
 
             } else {
 
