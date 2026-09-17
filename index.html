@@ -89,20 +89,20 @@
 
   <style>
     /* ============================================================
-       SCROLL-DRIVEN STORY SECTION
-       Flowtrix-inspired progressive text reveal
+       SCROLL-DRIVEN STORY SECTION — V2
+       Slower line-by-line reveal, delayed icons, Flowtrix geometry
        ============================================================ */
 
     .story-scroll-section {
-      --story-bg: #121f1e;
-      --story-grid: rgba(255, 255, 255, 0.075);
-      --story-muted: rgba(255, 255, 255, 0.135);
+      --story-bg: #13201f;
+      --story-grid: rgba(255, 255, 255, 0.072);
+      --story-muted: rgba(255, 255, 255, 0.13);
       --story-active: #ffffff;
 
       position: relative;
-      min-height: 250vh;
-      background: var(--story-bg);
+      min-height: 430vh;
       overflow: clip;
+      background: var(--story-bg);
       border-top: 1px solid var(--story-grid);
       border-bottom: 1px solid var(--story-grid);
     }
@@ -111,18 +111,16 @@
       position: sticky;
       top: 60px;
       height: calc(100vh - 60px);
-      min-height: 680px;
+      min-height: 700px;
       display: grid;
       place-items: center;
     }
 
     .story-grid-frame {
-      position: relative;
       width: 100%;
       height: 100%;
       display: grid;
       place-items: center;
-
       background-image:
         linear-gradient(
           to right,
@@ -149,64 +147,72 @@
     }
 
     .story-copy {
-      position: relative;
-      z-index: 2;
       width: 640.734px;
       max-width: calc(100vw - 48px);
-      padding: 30px 0 36px;
+      padding: 20px 0 28px;
       font-family: "Laygrotesk Trial", Arial, sans-serif;
-    }
-
-    .story-line {
-      margin: 0 0 34px;
-      color: var(--story-active);
       font-size: 32px;
       font-weight: 600;
       line-height: 40px;
       letter-spacing: -0.3px;
       text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .story-line:last-child {
+    .story-block {
+      margin: 0 0 34px;
+    }
+
+    .story-block:last-child {
       margin-bottom: 0;
     }
 
-    .story-text {
-      --fragment-progress: 0;
+    .story-row {
+      min-height: 40px;
+      white-space: nowrap;
+      color: var(--story-active);
+    }
+
+    .story-reveal {
+      --line-progress: 0;
 
       color: transparent;
       background:
         linear-gradient(
           90deg,
           var(--story-active) 0%,
-          var(--story-active) calc(var(--fragment-progress) * 100%),
-          var(--story-muted) calc(var(--fragment-progress) * 100%),
+          var(--story-active) calc(var(--line-progress) * 100%),
+          var(--story-muted) calc(var(--line-progress) * 100%),
           var(--story-muted) 100%
         );
       -webkit-background-clip: text;
       background-clip: text;
-      transition: background 0.08s linear;
     }
 
     .story-inline-icon {
-      --icon-progress: 0;
+      --icon-visible: 0;
 
       display: inline-block;
-      width: 27px;
-      height: 27px;
+      width: 25px;
+      height: 25px;
       margin: 0 5px 0 4px;
       object-fit: contain;
-      vertical-align: -4px;
-      opacity: calc(0.16 + (var(--icon-progress) * 0.84));
-      transform:
-        translateY(calc((1 - var(--icon-progress)) * 2px))
-        scale(calc(0.88 + (var(--icon-progress) * 0.12)));
-      filter:
-        saturate(calc(0.45 + (var(--icon-progress) * 0.55)));
+      vertical-align: -3px;
+
+      opacity: var(--icon-visible);
+      visibility: hidden;
+      transform: scale(calc(0.86 + (var(--icon-visible) * 0.14)));
       transition:
-        opacity 0.08s linear,
-        transform 0.08s linear,
-        filter 0.08s linear;
+        opacity 0.15s ease,
+        transform 0.15s ease;
+    }
+
+    .story-inline-icon.story-icon-leading {
+      margin-left: 0;
+    }
+
+    .story-inline-icon.is-visible {
+      visibility: visible;
     }
 
     .story-mobile-orbit {
@@ -217,7 +223,7 @@
     @media (max-width: 900px) {
 
       .story-scroll-section {
-        min-height: 225vh;
+        min-height: 390vh;
       }
 
       .story-sticky {
@@ -229,8 +235,7 @@
 
       .story-grid-frame {
         display: block;
-        padding-top: 188px;
-
+        padding-top: 190px;
         background-image:
           linear-gradient(
             to right,
@@ -257,18 +262,23 @@
         max-width: none;
         margin: 0 48px;
         padding: 28px 0 58px;
-      }
-
-      .story-line {
-        margin-bottom: 31px;
         font-size: 20px;
         line-height: 25px;
         letter-spacing: -0.22px;
       }
 
+      .story-block {
+        margin-bottom: 31px;
+      }
+
+      .story-row {
+        min-height: 25px;
+        white-space: normal;
+      }
+
       .story-inline-icon {
-        width: 19px;
-        height: 19px;
+        width: 18px;
+        height: 18px;
         margin-left: 3px;
         margin-right: 3px;
         vertical-align: -3px;
@@ -293,7 +303,6 @@
         position: absolute;
         inset: 28px;
         border-radius: 50%;
-
         background:
           radial-gradient(
             circle at 42% 20%,
@@ -303,7 +312,6 @@
             rgba(12, 42, 35, 0.08) 68%,
             rgba(12, 42, 35, 0) 74%
           );
-
         filter: blur(4px);
       }
 
@@ -322,27 +330,19 @@
     @media (max-width: 600px) {
 
       .story-scroll-section {
-        min-height: 235vh;
-      }
-
-      .story-sticky {
-        min-height: 700px;
-      }
-
-      .story-grid-frame {
-        padding-top: 168px;
+        min-height: 410vh;
       }
 
       .story-copy {
         margin: 0 48px;
         padding-top: 30px;
-      }
-
-      .story-line {
-        margin-bottom: 31px;
         font-size: 19px;
         line-height: 24px;
         letter-spacing: -0.2px;
+      }
+
+      .story-row {
+        min-height: 24px;
       }
 
       .story-mobile-orbit {
@@ -1689,6 +1689,7 @@
 
     <!-- =====================================================
          SCROLL-DRIVEN ECOMMERCE STORY
+         Line-based reveal tuned to Flowtrix reference
     ====================================================== -->
 
     <section
@@ -1705,124 +1706,77 @@
 
           <div class="story-copy">
 
-            <p class="story-line">
-              <span class="story-text">
-                Every eCommerce brand has a story.
-              </span>
-
-              <img
-                src="story-icon-star.png.png"
-                alt=""
-                class="story-inline-icon"
-                aria-hidden="true"
-              >
-
-              <span class="story-text">
-                Your growth should make it clear.
-              </span>
-            </p>
+            <div class="story-block">
+              <div class="story-row">
+                <span class="story-reveal">Every eCommerce brand has a story.</span>
+                <img src="story-icon-star.png.png" alt="" class="story-inline-icon" aria-hidden="true">
+              </div>
+              <div class="story-row">
+                <span class="story-reveal">Your growth should make it clear.</span>
+              </div>
+            </div>
 
 
-            <p class="story-line">
-              <span class="story-text">
-                Research can find opportunities fast.
-              </span>
-
-              <img
-                src="story-icon-lightning.png.png"
-                alt=""
-                class="story-inline-icon"
-                aria-hidden="true"
-              >
-
-              <span class="story-text">
-                But when customer insight, creative and store execution work separately,
-              </span>
-
-              <img
-                src="story-icon-standing-out.png.png"
-                alt=""
-                class="story-inline-icon"
-                aria-hidden="true"
-              >
-
-              <span class="story-text">
-                growth becomes harder.
-              </span>
-            </p>
+            <div class="story-block">
+              <div class="story-row">
+                <span class="story-reveal">Research can find opportunities fast.</span>
+                <img src="story-icon-lightning.png.png" alt="" class="story-inline-icon" aria-hidden="true">
+              </div>
+              <div class="story-row">
+                <span class="story-reveal">But when customer insight, creative and</span>
+              </div>
+              <div class="story-row">
+                <span class="story-reveal">store execution work separately,</span>
+                <img src="story-icon-standing-out.png.png" alt="" class="story-inline-icon" aria-hidden="true">
+              </div>
+              <div class="story-row">
+                <span class="story-reveal">growth becomes harder.</span>
+              </div>
+            </div>
 
 
-            <p class="story-line">
-              <span class="story-text">
-                This is why connected execution matters
-              </span>
-
-              <img
-                src="story-icon-browser.png.png"
-                alt=""
-                class="story-inline-icon"
-                aria-hidden="true"
-              >
-
-              <span class="story-text">
-                now more than ever.
-              </span>
-            </p>
+            <div class="story-block">
+              <div class="story-row">
+                <span class="story-reveal">This is why connected execution matters</span>
+              </div>
+              <div class="story-row">
+                <img src="story-icon-browser.png.png" alt="" class="story-inline-icon story-icon-leading" aria-hidden="true">
+                <span class="story-reveal">now more than ever.</span>
+              </div>
+            </div>
 
 
-            <p class="story-line">
-              <span class="story-text">
-                Acquisition needs more than traffic.
-              </span>
-
-              <img
-                src="story-icon-money.png.png"
-                alt=""
-                class="story-inline-icon"
-                aria-hidden="true"
-              >
-
-              <span class="story-text">
-                It needs stronger creative and a store built
-              </span>
-
-              <img
-                src="story-icon-chart.png.png"
-                alt=""
-                class="story-inline-icon"
-                aria-hidden="true"
-              >
-
-              <span class="story-text">
-                to turn attention into action.
-              </span>
-            </p>
+            <div class="story-block">
+              <div class="story-row">
+                <span class="story-reveal">Acquisition needs more than traffic.</span>
+                <img src="story-icon-money.png.png" alt="" class="story-inline-icon" aria-hidden="true">
+                <span class="story-reveal">It</span>
+              </div>
+              <div class="story-row">
+                <span class="story-reveal">needs stronger creative and a store built</span>
+              </div>
+              <div class="story-row">
+                <img src="story-icon-chart.png.png" alt="" class="story-inline-icon story-icon-leading" aria-hidden="true">
+                <span class="story-reveal">to turn attention into action.</span>
+              </div>
+            </div>
 
 
-            <p class="story-line">
-              <span class="story-text">
-                We connect
-              </span>
-
-              <img
-                src="story-icon-creative.png.png"
-                alt=""
-                class="story-inline-icon"
-                aria-hidden="true"
-              >
-
-              <span class="story-text">
-                research, Meta ads, CRO and Shopify so every decision moves the same customer journey forward
-              </span>
-
-              <img
-                src="story-icon-trust.png.png"
-                alt=""
-                class="story-inline-icon"
-                aria-hidden="true"
-              >
-              <span class="story-text">.</span>
-            </p>
+            <div class="story-block">
+              <div class="story-row">
+                <span class="story-reveal">We connect</span>
+                <img src="story-icon-creative.png.png" alt="" class="story-inline-icon" aria-hidden="true">
+                <span class="story-reveal">research, Meta ads, CRO</span>
+              </div>
+              <div class="story-row">
+                <span class="story-reveal">and Shopify so every decision moves the</span>
+              </div>
+              <div class="story-row">
+                <span class="story-reveal">same customer journey forward</span>
+                <img src="story-icon-trust.png.png" alt="" class="story-inline-icon" aria-hidden="true">
+                <span class="story-reveal">.</span>
+              </div>
+            </div>
 
           </div>
 
@@ -2613,26 +2567,26 @@
         return;
       }
 
-      const lines =
+      const rows =
         Array.from(
-          section.querySelectorAll(".story-line")
+          section.querySelectorAll(".story-row")
         );
 
-      const fragments = [];
+      const sequence = [];
 
-      lines.forEach(
-        function(line) {
+      rows.forEach(
+        function(row) {
 
-          const lineFragments =
+          const children =
             Array.from(
-              line.querySelectorAll(
-                ".story-text, .story-inline-icon"
-              )
+              row.children
             );
 
-          lineFragments.forEach(
-            function(fragment) {
-              fragments.push(fragment);
+          children.forEach(
+            function(child) {
+
+              sequence.push(child);
+
             }
           );
 
@@ -2672,42 +2626,63 @@
         const progress =
           scrolled / totalScrollable;
 
-        const count =
-          fragments.length;
+        const total =
+          sequence.length;
 
-        fragments.forEach(
-          function(fragment, index) {
+        /* Hold a little at the beginning and end, then reveal slowly. */
+        const revealStart = 0.08;
+        const revealEnd = 0.90;
+
+        sequence.forEach(
+          function(item, index) {
+
+            const slot =
+              (revealEnd - revealStart) /
+              total;
 
             const start =
-              (index / count) * 0.86;
+              revealStart +
+              (index * slot);
 
-            const end =
-              start + 0.20;
+            const duration =
+              item.classList.contains("story-inline-icon")
+                ? slot * 0.34
+                : slot * 0.92;
 
-            const localProgress =
+            const local =
               clamp(
                 (progress - start) /
-                (end - start),
+                Math.max(duration, 0.0001),
                 0,
                 1
               );
 
             if (
-              fragment.classList.contains(
+              item.classList.contains(
                 "story-inline-icon"
               )
             ) {
 
-              fragment.style.setProperty(
-                "--icon-progress",
-                localProgress.toFixed(3)
+              const visible =
+                local >= 0.02
+                  ? Math.min(local * 3.2, 1)
+                  : 0;
+
+              item.style.setProperty(
+                "--icon-visible",
+                visible.toFixed(3)
+              );
+
+              item.classList.toggle(
+                "is-visible",
+                visible > 0
               );
 
             } else {
 
-              fragment.style.setProperty(
-                "--fragment-progress",
-                localProgress.toFixed(3)
+              item.style.setProperty(
+                "--line-progress",
+                local.toFixed(3)
               );
 
             }
