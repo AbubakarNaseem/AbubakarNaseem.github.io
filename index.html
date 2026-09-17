@@ -89,17 +89,18 @@
 
   <style>
     /* ============================================================
-       SCROLL-DRIVEN STORY SECTION — V3 DESKTOP TUNE
+       SCROLL-DRIVEN STORY SECTION — V4 DESKTOP
+       Flowtrix-style geometry + global word/token reveal
        ============================================================ */
 
     .story-scroll-section {
       --story-bg: #13201f;
-      --story-grid: rgba(255, 255, 255, 0.072);
-      --story-muted: rgba(255, 255, 255, 0.185);
+      --story-grid: rgba(255, 255, 255, 0.070);
+      --story-muted: rgba(255, 255, 255, 0.165);
       --story-active: #ffffff;
 
       position: relative;
-      min-height: 520vh;
+      min-height: 700vh;
       overflow: clip;
       background: var(--story-bg);
       border-top: 1px solid var(--story-grid);
@@ -111,50 +112,43 @@
       top: 60px;
       height: calc(100vh - 60px);
       min-height: 700px;
-      display: grid;
-      place-items: center;
     }
 
     .story-grid-frame {
+      position: relative;
       width: 100%;
       height: 100%;
-      display: grid;
-      place-items: center;
 
+      /* Flowtrix-like architectural grid:
+         vertical boundaries only; no line crossing through the copy. */
       background-image:
         linear-gradient(
           to right,
-          transparent calc(50% - 320px),
-          var(--story-grid) calc(50% - 320px),
-          var(--story-grid) calc(50% - 319px),
-          transparent calc(50% - 319px),
-          transparent calc(50% + 320px),
-          var(--story-grid) calc(50% + 320px),
-          var(--story-grid) calc(50% + 321px),
-          transparent calc(50% + 321px)
-        ),
-        linear-gradient(
-          to bottom,
-          transparent 15%,
-          var(--story-grid) 15%,
-          var(--story-grid) calc(15% + 1px),
-          transparent calc(15% + 1px),
-          transparent 88%,
-          var(--story-grid) 88%,
-          var(--story-grid) calc(88% + 1px),
-          transparent calc(88% + 1px)
+          transparent calc(50% - 375px),
+          var(--story-grid) calc(50% - 375px),
+          var(--story-grid) calc(50% - 374px),
+          transparent calc(50% - 374px),
+          transparent calc(50% + 375px),
+          var(--story-grid) calc(50% + 375px),
+          var(--story-grid) calc(50% + 376px),
+          transparent calc(50% + 376px)
         );
     }
 
     .story-copy {
-      width: 640.734px;
-      max-width: calc(100vw - 48px);
-      padding: 12px 0 24px;
+      position: absolute;
+      top: 48px;
+      left: calc(50% - 350px);
+
+      width: 640px;
+      max-width: calc(100vw - 72px);
+
+      padding: 0;
 
       font-family: "Laygrotesk Trial", Arial, sans-serif;
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 600;
-      line-height: 40px;
+      line-height: 38px;
       letter-spacing: -0.3px;
 
       text-rendering: optimizeLegibility;
@@ -162,7 +156,7 @@
     }
 
     .story-block {
-      margin: 0 0 38px;
+      margin: 0 0 28px;
     }
 
     .story-block:last-child {
@@ -170,62 +164,67 @@
     }
 
     .story-row {
-      min-height: 40px;
+      min-height: 38px;
       white-space: nowrap;
+      color: var(--story-muted);
+    }
+
+    .story-word {
+      color: var(--story-muted);
+      transition: color 0.08s linear;
+    }
+
+    .story-word.is-complete {
       color: var(--story-active);
     }
 
-    .story-reveal {
-      --line-progress: 0;
-
+    .story-word.is-current {
       color: transparent;
       background:
         linear-gradient(
           90deg,
           var(--story-active) 0%,
-          var(--story-active) calc(var(--line-progress) * 100%),
-          var(--story-muted) calc(var(--line-progress) * 100%),
+          var(--story-active) calc(var(--word-progress) * 100%),
+          var(--story-muted) calc(var(--word-progress) * 100%),
           var(--story-muted) 100%
         );
       -webkit-background-clip: text;
       background-clip: text;
     }
 
-    /* Icon slot takes zero width until activated. */
-    .story-icon-slot {
-      --icon-slot-width: 0px;
-      --icon-opacity: 0;
-
-      display: inline-flex;
-      width: var(--icon-slot-width);
-      overflow: visible;
+    /* Icon occupies no width and is not visible before its token is reached. */
+    .story-icon-token {
+      display: none;
+      width: 0;
+      margin: 0;
       vertical-align: -3px;
-      transition:
-        width 0.12s ease,
-        margin 0.12s ease;
     }
 
-    .story-icon-slot.is-visible {
-      --icon-slot-width: 34px;
-      margin-left: 4px;
-      margin-right: 2px;
-    }
-
-    .story-icon-slot-leading.is-visible {
-      margin-left: 0;
+    .story-icon-token.is-visible {
+      display: inline-flex;
+      width: 29px;
+      margin: 0 3px;
+      align-items: center;
+      justify-content: center;
+      animation: storyIconIn 0.12s ease-out both;
     }
 
     .story-inline-icon {
-      width: 25px;
-      height: 25px;
-      min-width: 25px;
+      display: block;
+      width: 24px;
+      height: 24px;
       object-fit: contain;
-      opacity: var(--icon-opacity);
-      transform: scale(calc(0.86 + (var(--icon-opacity) * 0.14)));
-      transition:
-        opacity 0.12s ease,
-        transform 0.12s ease;
-      pointer-events: none;
+    }
+
+    @keyframes storyIconIn {
+      from {
+        opacity: 0;
+        transform: scale(0.82);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     .story-mobile-orbit {
@@ -233,30 +232,39 @@
     }
 
 
-    /* Mobile stays available but is intentionally not tuned yet. */
+    /* Mobile intentionally kept separate for later tuning. */
     @media (max-width: 900px) {
 
       .story-scroll-section {
-        min-height: 390vh;
+        min-height: 430vh;
       }
 
       .story-sticky {
         top: 0;
         height: 100vh;
         min-height: 720px;
-        align-items: start;
       }
 
       .story-grid-frame {
-        display: block;
-        padding-top: 190px;
+        background-image:
+          linear-gradient(
+            to right,
+            transparent 21px,
+            var(--story-grid) 21px,
+            var(--story-grid) 22px,
+            transparent 22px,
+            transparent calc(100% - 22px),
+            var(--story-grid) calc(100% - 22px),
+            var(--story-grid) calc(100% - 21px),
+            transparent calc(100% - 21px)
+          );
       }
 
       .story-copy {
-        width: auto;
+        top: 190px;
+        left: 48px;
+        width: calc(100% - 96px);
         max-width: none;
-        margin: 0 48px;
-        padding: 28px 0 58px;
         font-size: 20px;
         line-height: 25px;
         letter-spacing: -0.22px;
@@ -271,14 +279,14 @@
         white-space: normal;
       }
 
+      .story-icon-token.is-visible {
+        width: 23px;
+        margin: 0 2px;
+      }
+
       .story-inline-icon {
         width: 18px;
         height: 18px;
-        min-width: 18px;
-      }
-
-      .story-icon-slot.is-visible {
-        --icon-slot-width: 25px;
       }
 
       .story-mobile-orbit {
@@ -1659,7 +1667,7 @@
 
     <!-- =====================================================
          SCROLL-DRIVEN ECOMMERCE STORY
-         Desktop V3 — tighter line rhythm + true delayed icons
+         Desktop V4 — Flowtrix geometry + token reveal
     ====================================================== -->
 
     <section
@@ -1676,81 +1684,92 @@
 
           <div class="story-copy">
 
+            <!-- 2 lines -->
             <div class="story-block">
               <div class="story-row">
-                <span class="story-reveal">Every eCommerce brand has a story.</span>
-                <span class="story-icon-slot">
+                <span class="story-reveal">Every eCommerce brand has its own story.</span>
+                <span class="story-icon-token">
                   <img src="story-icon-star.png.png" alt="" class="story-inline-icon" aria-hidden="true">
                 </span>
+                <span class="story-reveal">Your growth</span>
               </div>
               <div class="story-row">
-                <span class="story-reveal">Your growth should make it clear.</span>
+                <span class="story-reveal">should make it clear.</span>
               </div>
             </div>
 
+            <!-- 3 lines -->
             <div class="story-block">
               <div class="story-row">
                 <span class="story-reveal">Research can find opportunities fast.</span>
-                <span class="story-icon-slot">
+                <span class="story-icon-token">
                   <img src="story-icon-lightning.png.png" alt="" class="story-inline-icon" aria-hidden="true">
                 </span>
+                <span class="story-reveal">But when</span>
               </div>
               <div class="story-row">
-                <span class="story-reveal">But when insight, creative and store execution</span>
+                <span class="story-reveal">insight, creative and store execution work</span>
               </div>
               <div class="story-row">
-                <span class="story-reveal">work separately,</span>
-                <span class="story-icon-slot">
+                <span class="story-reveal">separately,</span>
+                <span class="story-icon-token">
                   <img src="story-icon-standing-out.png.png" alt="" class="story-inline-icon" aria-hidden="true">
                 </span>
                 <span class="story-reveal">growth becomes harder.</span>
               </div>
             </div>
 
+            <!-- 1 line -->
             <div class="story-block">
               <div class="story-row">
-                <span class="story-reveal">This is why connected execution matters</span>
-              </div>
-              <div class="story-row">
-                <span class="story-icon-slot story-icon-slot-leading">
+                <span class="story-reveal">Connected execution matters</span>
+                <span class="story-icon-token">
                   <img src="story-icon-browser.png.png" alt="" class="story-inline-icon" aria-hidden="true">
                 </span>
                 <span class="story-reveal">now more than ever.</span>
               </div>
             </div>
 
+            <!-- 3 lines -->
             <div class="story-block">
               <div class="story-row">
                 <span class="story-reveal">Acquisition needs more than traffic.</span>
-                <span class="story-icon-slot">
+                <span class="story-icon-token">
                   <img src="story-icon-money.png.png" alt="" class="story-inline-icon" aria-hidden="true">
                 </span>
+                <span class="story-reveal">It needs</span>
               </div>
               <div class="story-row">
-                <span class="story-reveal">It needs stronger creative and a store built</span>
-              </div>
-              <div class="story-row">
-                <span class="story-icon-slot story-icon-slot-leading">
+                <span class="story-reveal">strong creative, clear messaging and the</span>
+                <span class="story-icon-token">
                   <img src="story-icon-chart.png.png" alt="" class="story-inline-icon" aria-hidden="true">
                 </span>
+                <span class="story-reveal">confidence</span>
+              </div>
+              <div class="story-row">
                 <span class="story-reveal">to turn attention into action.</span>
               </div>
             </div>
 
+            <!-- 3 lines -->
             <div class="story-block">
               <div class="story-row">
                 <span class="story-reveal">We connect</span>
-                <span class="story-icon-slot">
+                <span class="story-icon-token">
                   <img src="story-icon-creative.png.png" alt="" class="story-inline-icon" aria-hidden="true">
                 </span>
-                <span class="story-reveal">research, Meta ads, CRO and</span>
+                <span class="story-reveal">research, creative and Meta ads, so</span>
               </div>
               <div class="story-row">
-                <span class="story-reveal">Shopify so each decision moves the same</span>
+                <span class="story-reveal">what customers see</span>
+                <span class="story-icon-token">
+                  <img src="story-icon-sparkle.png.png" alt="" class="story-inline-icon" aria-hidden="true">
+                </span>
+                <span class="story-reveal">connects with what they</span>
               </div>
               <div class="story-row">
-                <span class="story-reveal">customer journey forward.</span>
-                <span class="story-icon-slot">
+                <span class="story-reveal">experience on your Shopify store.</span>
+                <span class="story-icon-token">
                   <img src="story-icon-trust.png.png" alt="" class="story-inline-icon" aria-hidden="true">
                 </span>
               </div>
@@ -2545,19 +2564,71 @@
         return;
       }
 
-      const rows =
+
+      /* ---------------------------------------------------------
+         TOKENIZE TEXT WITHOUT CHANGING THE LOCKED LINE STRUCTURE
+         --------------------------------------------------------- */
+
+      const revealSpans =
         Array.from(
-          section.querySelectorAll(".story-row")
+          section.querySelectorAll(".story-reveal")
         );
+
+      revealSpans.forEach(
+        function(span) {
+
+          const words =
+            span.textContent
+              .trim()
+              .split(/\s+/);
+
+          span.textContent = "";
+
+          words.forEach(
+            function(word, index) {
+
+              const token =
+                document.createElement("span");
+
+              token.className =
+                "story-word";
+
+              token.textContent =
+                word;
+
+              span.appendChild(token);
+
+              if (index < words.length - 1) {
+                span.appendChild(
+                  document.createTextNode(" ")
+                );
+              }
+
+            }
+          );
+
+        }
+      );
+
+
+      /* ---------------------------------------------------------
+         BUILD ONE GLOBAL READING SEQUENCE
+         --------------------------------------------------------- */
 
       const sequence = [];
 
-      rows.forEach(
+      Array.from(
+        section.querySelectorAll(".story-row")
+      ).forEach(
         function(row) {
 
-          Array.from(row.children).forEach(
-            function(child) {
-              sequence.push(child);
+          Array.from(
+            row.querySelectorAll(
+              ".story-word, .story-icon-token"
+            )
+          ).forEach(
+            function(token) {
+              sequence.push(token);
             }
           );
 
@@ -2583,7 +2654,8 @@
 
         const totalScrollable =
           Math.max(
-            section.offsetHeight - viewportHeight,
+            section.offsetHeight -
+            viewportHeight,
             1
           );
 
@@ -2594,73 +2666,84 @@
             totalScrollable
           );
 
-        const progress =
-          scrolled / totalScrollable;
+        const sectionProgress =
+          scrolled /
+          totalScrollable;
 
-        /*
-          Long hold at the start/end.
-          Each line gets its own slot.
-          Icons appear only after their position is reached.
-        */
-        const revealStart = 0.10;
-        const revealEnd = 0.91;
-        const total = sequence.length;
-        const slot =
-          (revealEnd - revealStart) / total;
+        /* Long cinematic hold at both ends. */
+        const start = 0.09;
+        const end = 0.92;
+
+        const readingProgress =
+          clamp(
+            (sectionProgress - start) /
+            (end - start),
+            0,
+            1
+          );
+
+        const scaled =
+          readingProgress *
+          sequence.length;
+
+        const completedCount =
+          Math.floor(scaled);
+
+        const currentProgress =
+          scaled -
+          completedCount;
+
 
         sequence.forEach(
-          function(item, index) {
+          function(token, index) {
 
-            const start =
-              revealStart + (index * slot);
-
-            const isIconSlot =
-              item.classList.contains(
-                "story-icon-slot"
+            const isIcon =
+              token.classList.contains(
+                "story-icon-token"
               );
 
-            const duration =
-              isIconSlot
-                ? slot * 0.18
-                : slot * 0.78;
+            if (isIcon) {
 
-            const local =
-              clamp(
-                (progress - start) /
-                Math.max(duration, 0.0001),
-                0,
-                1
-              );
-
-            if (isIconSlot) {
-
-              const visible =
-                local > 0
-                  ? Math.min(local * 4.2, 1)
-                  : 0;
-
-              item.classList.toggle(
+              token.classList.toggle(
                 "is-visible",
-                visible > 0
+                index < completedCount ||
+                (
+                  index === completedCount &&
+                  currentProgress > 0.18
+                )
               );
 
-              const icon =
-                item.querySelector(
-                  ".story-inline-icon"
-                );
+              return;
+            }
 
-              if (icon) {
-                icon.style.setProperty(
-                  "--icon-opacity",
-                  visible.toFixed(3)
-                );
-              }
 
-            } else {
+            token.classList.remove(
+              "is-complete",
+              "is-current"
+            );
 
-              item.style.setProperty(
-                "--line-progress",
-                local.toFixed(3)
+            token.style.removeProperty(
+              "--word-progress"
+            );
+
+
+            if (index < completedCount) {
+
+              token.classList.add(
+                "is-complete"
+              );
+
+            } else if (
+              index === completedCount
+            ) {
+
+              token.classList.add(
+                "is-current"
+              );
+
+              token.style.setProperty(
+                "--word-progress",
+                currentProgress.toFixed(3)
               );
 
             }
