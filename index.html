@@ -232,19 +232,20 @@
 
 
     /* ============================================================
-       MOBILE STORY — FLOWTRIX-LIKE COMPOSITION
-       Desktop above is intentionally untouched.
+       MOBILE STORY — V2
+       Tighter Flowtrix geometry + smoother reveal
+       Desktop above remains untouched.
        ============================================================ */
     @media (max-width: 900px) {
 
       .story-scroll-section {
-        min-height: 520vh;
+        min-height: 585vh;
       }
 
       .story-sticky {
         top: 0;
         height: 100vh;
-        min-height: 700px;
+        min-height: 680px;
       }
 
       .story-grid-frame {
@@ -264,10 +265,10 @@
           ),
           linear-gradient(
             to bottom,
-            transparent 162px,
-            var(--story-grid) 162px,
-            var(--story-grid) 163px,
-            transparent 163px,
+            transparent 164px,
+            var(--story-grid) 164px,
+            var(--story-grid) 165px,
+            transparent 165px,
             transparent calc(100% - 28px),
             var(--story-grid) calc(100% - 28px),
             var(--story-grid) calc(100% - 27px),
@@ -276,11 +277,11 @@
       }
 
       .story-copy {
-        top: 194px;
-        left: 49px;
+        top: 151px;
+        left: 36px;
         transform: none;
 
-        width: calc(100% - 98px);
+        width: calc(100% - 72px);
         max-width: none;
 
         padding: 0;
@@ -288,12 +289,12 @@
         font-family: "Laygrotesk Trial", Arial, sans-serif;
         font-size: 18px;
         font-weight: 600;
-        line-height: 23px;
+        line-height: 24px;
         letter-spacing: -0.18px;
       }
 
       .story-block {
-        margin: 0 0 30px;
+        margin: 0 0 28px;
       }
 
       .story-block:last-child {
@@ -301,35 +302,35 @@
       }
 
       .story-row {
-        min-height: 23px;
+        min-height: 24px;
         white-space: normal;
       }
 
-      /* Hidden icons must take ZERO space on mobile too. */
+      .story-word {
+        transition: color 0.16s linear;
+      }
+
+      /* No empty placeholder before an icon is reached. */
       .story-icon-token {
         display: inline-flex;
         width: 0;
         margin: 0;
-
         align-items: center;
         justify-content: center;
-
         vertical-align: -2px;
 
         opacity: 0;
         visibility: hidden;
         overflow: visible;
-
-        transform: scale(0.90);
+        transform: scale(0.88);
 
         transition:
-          opacity 0.10s ease-out,
-          transform 0.10s ease-out;
+          opacity 0.14s ease-out,
+          transform 0.14s ease-out;
       }
 
       .story-icon-token.is-visible {
-        width: 21px;
-
+        width: 20px;
         margin-left: 2px;
         margin-right: 2px;
 
@@ -339,27 +340,28 @@
       }
 
       .story-inline-icon {
-        width: 17px;
-        height: 17px;
+        width: 16px;
+        height: 16px;
       }
 
-      /* Large bright Flowtrix-like orbit entering from above. */
+      /* Flowtrix-like ring: higher, cleaner hollow center,
+         brighter lower rim, visible dotted orbit. */
       .story-mobile-orbit {
         position: absolute;
         z-index: 1;
 
-        top: -185px;
+        top: -256px;
         left: 50%;
 
         display: block;
 
-        width: 350px;
-        height: 350px;
+        width: 345px;
+        height: 345px;
 
         transform: translateX(-50%);
 
         border-radius: 50%;
-        border: 1px dashed rgba(139, 255, 167, 0.13);
+        border: 1px dashed rgba(145, 255, 175, 0.16);
 
         pointer-events: none;
       }
@@ -375,38 +377,33 @@
         background:
           conic-gradient(
             from 205deg,
-            rgba(115, 235, 91, 0.96),
-            rgba(210, 255, 113, 1),
-            rgba(119, 242, 92, 0.98),
-            rgba(62, 185, 88, 0.87),
-            rgba(115, 235, 91, 0.96)
+            rgba(105, 220, 83, 0.88) 0deg,
+            rgba(150, 248, 91, 0.98) 72deg,
+            rgba(226, 255, 124, 1) 126deg,
+            rgba(126, 243, 87, 1) 190deg,
+            rgba(56, 180, 82, 0.90) 270deg,
+            rgba(105, 220, 83, 0.88) 360deg
           );
 
         box-shadow:
-          0 0 24px rgba(106, 255, 111, 0.20),
-          inset 0 0 18px rgba(232, 255, 156, 0.18);
+          0 0 18px rgba(119, 255, 109, 0.22),
+          0 0 38px rgba(96, 238, 100, 0.12);
 
-        filter: blur(1.8px);
+        filter: blur(1.4px);
       }
 
       .story-mobile-orbit::after {
         content: "";
         position: absolute;
 
-        inset: 90px;
+        inset: 91px;
 
         border-radius: 50%;
 
-        background:
-          radial-gradient(
-            circle at 50% 42%,
-            rgba(18, 32, 31, 0.96) 0%,
-            rgba(18, 32, 31, 0.985) 58%,
-            rgba(18, 32, 31, 1) 100%
-          );
+        background: #13201f;
 
         box-shadow:
-          0 0 22px rgba(18, 32, 31, 0.78);
+          0 0 20px rgba(19, 32, 31, 0.92);
       }
 
     }
@@ -2713,7 +2710,7 @@
       }
 
 
-      function updateStoryReveal() {
+      function getTargetProgress() {
 
         const rect =
           section.getBoundingClientRect();
@@ -2739,26 +2736,26 @@
           scrolled /
           totalScrollable;
 
-        /*
-          Slower pacing than V4.
-          Longer hold before first reveal and after final reveal.
-        */
         const isMobile =
           window.matchMedia("(max-width: 900px)").matches;
 
         const start =
-          isMobile ? 0.13 : 0.11;
+          isMobile ? 0.145 : 0.11;
 
         const end =
-          isMobile ? 0.89 : 0.90;
+          isMobile ? 0.885 : 0.90;
 
-        const readingProgress =
-          clamp(
-            (sectionProgress - start) /
-            (end - start),
-            0,
-            1
-          );
+        return clamp(
+          (sectionProgress - start) /
+          (end - start),
+          0,
+          1
+        );
+
+      }
+
+
+      function renderStory(readingProgress) {
 
         const scaled =
           readingProgress *
@@ -2787,7 +2784,7 @@
                 index < completedCount ||
                 (
                   index === completedCount &&
-                  currentProgress > 0.42
+                  currentProgress > 0.58
                 )
               );
 
@@ -2832,24 +2829,77 @@
       }
 
 
-      let ticking = false;
+      let currentProgress =
+        getTargetProgress();
+
+      let targetProgress =
+        currentProgress;
+
+      let animationFrame = null;
+
+
+      function animateStory() {
+
+        targetProgress =
+          getTargetProgress();
+
+        const isMobile =
+          window.matchMedia("(max-width: 900px)").matches;
+
+        /* Mobile deliberately trails the scroll slightly.
+           This removes the abrupt/random feeling and gives
+           the reveal a smoother cinematic scrub. */
+        const ease =
+          isMobile ? 0.095 : 0.18;
+
+        currentProgress +=
+          (targetProgress - currentProgress) *
+          ease;
+
+        if (
+          Math.abs(
+            targetProgress - currentProgress
+          ) < 0.00025
+        ) {
+          currentProgress =
+            targetProgress;
+        }
+
+        renderStory(
+          currentProgress
+        );
+
+        if (
+          Math.abs(
+            targetProgress - currentProgress
+          ) > 0.0002
+        ) {
+
+          animationFrame =
+            window.requestAnimationFrame(
+              animateStory
+            );
+
+        } else {
+
+          animationFrame = null;
+
+        }
+
+      }
+
 
       function requestStoryUpdate() {
 
-        if (ticking) {
-          return;
+        targetProgress =
+          getTargetProgress();
+
+        if (!animationFrame) {
+          animationFrame =
+            window.requestAnimationFrame(
+              animateStory
+            );
         }
-
-        ticking = true;
-
-        window.requestAnimationFrame(
-          function() {
-
-            updateStoryReveal();
-            ticking = false;
-
-          }
-        );
 
       }
 
@@ -2865,7 +2915,9 @@
         requestStoryUpdate
       );
 
-      updateStoryReveal();
+      renderStory(
+        currentProgress
+      );
 
     })();
   </script>
