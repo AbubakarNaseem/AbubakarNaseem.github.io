@@ -89,8 +89,8 @@
 
   <style>
     /* ============================================================
-       SCROLL-DRIVEN STORY SECTION — V5 DESKTOP REFINEMENT
-       Stable icon spacing + narrower copy + slower reveal
+       SCROLL-DRIVEN STORY SECTION — V6 DESKTOP
+       Overflow-safe composition + stable icon spacing
        ============================================================ */
 
     .story-scroll-section {
@@ -136,17 +136,18 @@
     .story-copy {
       position: absolute;
       top: 66px;
-      left: calc(50% - 330px);
+      left: 50%;
+      transform: translateX(-50%);
 
-      width: 600px;
-      max-width: calc(100vw - 72px);
+      width: 640px;
+      max-width: calc(100vw - 80px);
 
       padding: 0;
 
       font-family: "Laygrotesk Trial", Arial, sans-serif;
-      font-size: 30px;
+      font-size: 29px;
       font-weight: 600;
-      line-height: 38px;
+      line-height: 37px;
       letter-spacing: -0.3px;
 
       text-rendering: optimizeLegibility;
@@ -154,7 +155,7 @@
     }
 
     .story-block {
-      margin: 0 0 26px;
+      margin: 0 0 27px;
     }
 
     .story-block:last-child {
@@ -162,7 +163,7 @@
     }
 
     .story-row {
-      min-height: 38px;
+      min-height: 37px;
       white-space: nowrap;
       color: var(--story-muted);
     }
@@ -190,13 +191,10 @@
       background-clip: text;
     }
 
-    /* Reserve the final icon space from frame one.
-       The icon itself stays completely invisible until triggered.
-       This prevents line movement while preserving zero visible icons. */
     .story-icon-token {
       display: inline-flex;
-      width: 27px;
-      margin: 0 3px;
+      width: 25px;
+      margin: 0 2px;
       align-items: center;
       justify-content: center;
       vertical-align: -3px;
@@ -218,8 +216,8 @@
 
     .story-inline-icon {
       display: block;
-      width: 22px;
-      height: 22px;
+      width: 21px;
+      height: 21px;
       object-fit: contain;
       pointer-events: none;
     }
@@ -229,7 +227,7 @@
     }
 
 
-    /* Mobile intentionally left for later tuning. */
+    /* Mobile intentionally untouched for later tuning. */
     @media (max-width: 900px) {
 
       .story-scroll-section {
@@ -260,6 +258,7 @@
       .story-copy {
         top: 190px;
         left: 48px;
+        transform: none;
         width: calc(100% - 96px);
         max-width: none;
         font-size: 20px;
@@ -1664,7 +1663,7 @@
 
     <!-- =====================================================
          SCROLL-DRIVEN ECOMMERCE STORY
-         Desktop V4 — Flowtrix geometry + token reveal
+         Desktop V6 — line-safe Flowtrix composition
     ====================================================== -->
 
     <section
@@ -1688,10 +1687,9 @@
                 <span class="story-icon-token">
                   <img src="story-icon-star.png.png" alt="" class="story-inline-icon" aria-hidden="true">
                 </span>
-                <span class="story-reveal">Your growth</span>
               </div>
               <div class="story-row">
-                <span class="story-reveal">should make it clear.</span>
+                <span class="story-reveal">Your growth should make it clear.</span>
               </div>
             </div>
 
@@ -1702,13 +1700,12 @@
                 <span class="story-icon-token">
                   <img src="story-icon-lightning.png.png" alt="" class="story-inline-icon" aria-hidden="true">
                 </span>
-                <span class="story-reveal">But when</span>
               </div>
               <div class="story-row">
-                <span class="story-reveal">insight, creative and store execution work</span>
+                <span class="story-reveal">But when insight, creative and store execution</span>
               </div>
               <div class="story-row">
-                <span class="story-reveal">separately,</span>
+                <span class="story-reveal">work separately,</span>
                 <span class="story-icon-token">
                   <img src="story-icon-standing-out.png.png" alt="" class="story-inline-icon" aria-hidden="true">
                 </span>
@@ -1734,17 +1731,16 @@
                 <span class="story-icon-token">
                   <img src="story-icon-money.png.png" alt="" class="story-inline-icon" aria-hidden="true">
                 </span>
-                <span class="story-reveal">It needs</span>
               </div>
               <div class="story-row">
-                <span class="story-reveal">strong creative, clear messaging and the</span>
+                <span class="story-reveal">It needs stronger creative, clear messaging and</span>
+              </div>
+              <div class="story-row">
+                <span class="story-reveal">the</span>
                 <span class="story-icon-token">
                   <img src="story-icon-chart.png.png" alt="" class="story-inline-icon" aria-hidden="true">
                 </span>
-                <span class="story-reveal">confidence</span>
-              </div>
-              <div class="story-row">
-                <span class="story-reveal">to turn attention into action.</span>
+                <span class="story-reveal">confidence to turn attention into action.</span>
               </div>
             </div>
 
@@ -1755,17 +1751,17 @@
                 <span class="story-icon-token">
                   <img src="story-icon-creative.png.png" alt="" class="story-inline-icon" aria-hidden="true">
                 </span>
-                <span class="story-reveal">research, creative and Meta ads, so</span>
+                <span class="story-reveal">research, creative and Meta ads.</span>
               </div>
               <div class="story-row">
-                <span class="story-reveal">what customers see</span>
+                <span class="story-reveal">What customers see</span>
                 <span class="story-icon-token">
                   <img src="story-icon-sparkle.png.png" alt="" class="story-inline-icon" aria-hidden="true">
                 </span>
-                <span class="story-reveal">connects with what they</span>
+                <span class="story-reveal">should connect with what</span>
               </div>
               <div class="story-row">
-                <span class="story-reveal">experience on your Shopify store.</span>
+                <span class="story-reveal">they experience on your Shopify store.</span>
                 <span class="story-icon-token">
                   <img src="story-icon-trust.png.png" alt="" class="story-inline-icon" aria-hidden="true">
                 </span>
