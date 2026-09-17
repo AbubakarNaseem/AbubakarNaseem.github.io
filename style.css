@@ -5494,3 +5494,36 @@ span:nth-child(3) {
   }
 
 }
+
+/* ============================================================
+   RESOURCES FINAL FEATURED-STORY TUNE
+   ============================================================ */
+
+@media (min-width: 901px) {
+
+  .resources-feature-card {
+    max-width: 390px !important;
+  }
+
+  .resources-feature-image-wrap {
+    aspect-ratio: 16 / 7.7 !important;
+  }
+
+  .resources-feature-content {
+    padding:
+      13px
+      16px
+      15px !important;
+  }
+
+  .resources-feature-content strong {
+    font-size: 16px !important;
+    line-height: 21px !important;
+  }
+
+  .resources-feature-content p {
+    font-size: 12px !important;
+    line-height: 18px !important;
+  }
+
+}
