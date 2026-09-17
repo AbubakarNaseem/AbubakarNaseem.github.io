@@ -2002,52 +2002,14 @@
 
     function closeDesktopMenus() {
 
-      desktopMenus.forEach(
+desktopMenus.forEach(
   function(item) {
-
-    const dropdown =
-      item.trigger.closest(".nav-dropdown");
-
-
-    /* OPEN ON DESKTOP HOVER */
-
-    dropdown.addEventListener(
-      "mouseenter",
-      function() {
-
-        if (window.innerWidth > 900) {
-          openDesktopMenu(item);
-        }
-
-      }
-    );
-
-
-    /* CLOSE WHEN MOUSE LEAVES DROPDOWN */
-
-    dropdown.addEventListener(
-      "mouseleave",
-      function() {
-
-        if (window.innerWidth > 900) {
-          closeDesktopMenus();
-        }
-
-      }
-    );
-
-
-    /* KEEP CLICK SUPPORT FOR KEYBOARD / ACCESSIBILITY */
 
     item.trigger.addEventListener(
       "click",
       function(event) {
 
         event.stopPropagation();
-
-        if (window.innerWidth <= 900) {
-          return;
-        }
 
         if (
           item.menu.classList.contains("is-open")
