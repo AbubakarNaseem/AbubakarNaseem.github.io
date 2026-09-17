@@ -722,27 +722,17 @@
 
     <section class="hero-v2">
 
-
       <div
-        class="hero-flow-lines"
-        aria-hidden="true"
-      >
-        <span class="flow-line flow-line-1"></span>
-        <span class="flow-line flow-line-2"></span>
-        <span class="flow-line flow-line-3"></span>
-        <span class="flow-line flow-line-4"></span>
-        <span class="flow-line flow-line-5"></span>
-      </div>
-
-
-      <div
-        class="hero-v2-glow"
+        class="hero-v2-arc"
         aria-hidden="true"
       ></div>
 
+      <div
+        class="hero-v2-bottom-glow"
+        aria-hidden="true"
+      ></div>
 
       <div class="container hero-v2-grid">
-
 
         <!-- =================================================
              LEFT CONTENT
@@ -750,156 +740,91 @@
 
         <div class="hero-v2-copy">
 
+          <!-- CLUTCH PROOF -->
 
-          <!-- PROOF BADGE -->
-
-          <div class="hero-v2-proof">
-
-
-            <a
-              href="https://www.upwork.com/freelancers/abubakarnaseemofficial"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="hero-v2-proof-primary"
+          <div class="hero-v2-clutch">
+            <img
+              src="clutch-rating-full.png"
+              alt="Clutch 4.9 out of 5 rating"
+              class="hero-v2-clutch-image"
+              width="285"
+              height="40"
             >
-
-              <img
-                src="upwork-logo.png"
-                alt="Upwork"
-                class="upwork-proof-logo"
-                width="24"
-                height="24"
-                style="width:24px;height:24px;max-width:24px;max-height:24px;object-fit:cover;border-radius:50%;flex:0 0 24px;"
-              >
-
-              <strong>
-                Top Rated
-              </strong>
-
-            </a>
-
-
-            <a
-              href="#case-studies"
-              class="hero-v2-proof-secondary"
-            >
-
-              250+ Projects
-
-              <span class="proof-mini-arrow">
-                →
-              </span>
-
-            </a>
-
           </div>
 
 
           <!-- HEADLINE -->
 
           <h1 class="hero-v2-title">
-
-            <span>
-              Research-led growth
+            We make eCommerce brands ready to acquire,
+            <span class="hero-v2-title-highlight">
+              convert and scale.
             </span>
-
-            <span>
-              for eCommerce
-            </span>
-
-            <span>
-              brands
-            </span>
-
           </h1>
 
 
-          <!-- DESCRIPTION -->
+          <!-- WEBSITE AUDIT -->
 
-          <p class="hero-v2-description">
+          <div
+            class="hero-v2-audit"
+            aria-label="Website audit"
+          >
 
-            Customer research, creative strategy, Meta ads, CRO,
-            Shopify development, and landing pages connected around
-            what actually moves customers.
+            <div class="hero-v2-audit-row">
 
-          </p>
+              <label
+                for="heroWebsiteUrl"
+                class="sr-only"
+              >
+                Website URL
+              </label>
 
-
-          <!-- CTA GLASS -->
-
-          <div class="hero-v2-action-card">
-
-
-            <div class="hero-v2-action-buttons">
-
-
-              <a
-                href="#contact"
-                class="hero-v2-primary-button"
+              <input
+                id="heroWebsiteUrl"
+                class="hero-v2-audit-input"
+                type="url"
+                inputmode="url"
+                autocomplete="url"
+                placeholder="www.yourwebsite.com"
               >
 
-                <span>
-                  Book a call
-                </span>
-
-                <span class="hero-v2-button-arrow">
-                  →
-                </span>
-
-              </a>
-
-
-              <a
-                href="#case-studies"
-                class="hero-v2-secondary-button"
+              <button
+                class="hero-v2-audit-button"
+                type="button"
+                aria-label="Audit my store"
               >
-
-                <span>
-                  Read success stories
-                </span>
-
-                <span class="hero-v2-button-arrow hero-secondary-arrow">
-                  →
-                </span>
-
-              </a>
+                Audit my store
+              </button>
 
             </div>
 
 
-            <div class="hero-v2-credibility">
-
-
-              <img
-                src="clutch-logo.svg"
-                alt="Clutch"
-                class="credibility-logo"
+            <p class="hero-v2-audit-note">
+              <strong>Free</strong>
+              <span
+                class="hero-v2-audit-spark"
+                aria-hidden="true"
               >
-
-
-              <img
-                src="clutch-rating.svg"
-                alt="Clutch rating"
-                class="credibility-rating"
-              >
-
-
-              <span class="credibility-divider"></span>
-
-
-              <span class="credibility-partner">
-
-                <span class="partner-symbol">
-                  ◆
-                </span>
-
-                Trusted Partner
-
+                ✦
               </span>
-
-            </div>
+              <span class="hero-v2-audit-note-accent">
+                Website audit.
+              </span>
+              <span>
+                Done in under 2 minutes
+              </span>
+            </p>
 
           </div>
+
+
+          <!-- SUPPORTING COPY -->
+
+          <p class="hero-v2-description">
+            Abubakar Naseem helps eCommerce brands connect research,
+            creative and store execution into stronger acquisition and
+            conversion, from customer insight to Meta ads, CRO and Shopify.
+          </p>
 
 
           <!-- =================================================
@@ -908,17 +833,9 @@
 
           <div class="hero-v2-trust">
 
-
-            <p class="hero-v2-trust-label">
-              Trusted by businesses across eCommerce and digital markets
-            </p>
-
-
             <div class="trust-ticker-viewport">
 
-
               <div class="trust-ticker-track">
-
 
                 <!-- ORIGINAL SET -->
 
@@ -955,7 +872,7 @@
                 </div>
 
 
-                <!-- DUPLICATED SET -->
+                <!-- DUPLICATED SET FOR SEAMLESS LOOP -->
 
                 <div
                   class="trust-logo-item"
@@ -1016,17 +933,13 @@
 
         <div class="project-rail-shell">
 
-
           <div class="project-rail-viewport">
 
-
             <div class="project-rail-track project-continuous-track">
-
 
               <!-- =================================================
                    ORIGINAL SET
               ================================================== -->
-
 
               <!-- 1 META -->
 
@@ -1227,12 +1140,12 @@
                    DUPLICATED SET FOR SEAMLESS LOOP
               ================================================== -->
 
-
               <a
                 href="#case-studies"
                 class="project-rail-card"
                 style="--card-accent:#121A1C;"
                 aria-hidden="true"
+                tabindex="-1"
               >
 
                 <div class="project-card-image-frame">
@@ -1264,6 +1177,7 @@
                 class="project-rail-card"
                 style="--card-accent:#FF38A2;"
                 aria-hidden="true"
+                tabindex="-1"
               >
 
                 <div class="project-card-image-frame">
@@ -1295,6 +1209,7 @@
                 class="project-rail-card"
                 style="--card-accent:#3E3398;"
                 aria-hidden="true"
+                tabindex="-1"
               >
 
                 <div class="project-card-image-frame">
@@ -1326,6 +1241,7 @@
                 class="project-rail-card"
                 style="--card-accent:#FFFFFF;"
                 aria-hidden="true"
+                tabindex="-1"
               >
 
                 <div class="project-card-image-frame">
@@ -1357,6 +1273,7 @@
                 class="project-rail-card"
                 style="--card-accent:#75B7D8;"
                 aria-hidden="true"
+                tabindex="-1"
               >
 
                 <div class="project-card-image-frame">
