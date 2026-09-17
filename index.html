@@ -169,16 +169,10 @@
     }
 
     .story-word {
-      color: var(--story-muted);
-      transition: color 0.08s linear;
-    }
+      --word-progress: 0;
 
-    .story-word.is-complete {
-      color: var(--story-active);
-    }
-
-    .story-word.is-current {
       color: transparent;
+
       background:
         linear-gradient(
           90deg,
@@ -187,35 +181,40 @@
           var(--story-muted) calc(var(--word-progress) * 100%),
           var(--story-muted) 100%
         );
+
       -webkit-background-clip: text;
       background-clip: text;
     }
 
+    /* Smoothly grows from zero width only when the reading cursor
+       reaches the icon. No empty gap before that point. */
     .story-icon-token {
+      --icon-progress: 0;
+
       display: inline-flex;
-      width: 0;
-      margin: 0;
+
+      width: calc(25px * var(--icon-progress));
+      margin-left: calc(2px * var(--icon-progress));
+      margin-right: calc(2px * var(--icon-progress));
+
       align-items: center;
       justify-content: center;
+
       vertical-align: -3px;
 
-      opacity: 0;
-      visibility: hidden;
+      opacity: var(--icon-progress);
+
       overflow: visible;
-      transform: scale(0.90);
 
-      transition:
-        opacity 0.10s ease-out,
-        transform 0.10s ease-out;
-    }
+      transform:
+        scale(
+          calc(
+            0.82 +
+            (0.18 * var(--icon-progress))
+          )
+        );
 
-    .story-icon-token.is-visible {
-      width: 25px;
-      margin-left: 2px;
-      margin-right: 2px;
-      opacity: 1;
-      visibility: visible;
-      transform: scale(1);
+      pointer-events: none;
     }
 
     .story-inline-icon {
@@ -306,37 +305,11 @@
         white-space: normal;
       }
 
-      .story-word {
-        transition: color 0.16s linear;
-      }
-
-      /* No empty placeholder before an icon is reached. */
       .story-icon-token {
-        display: inline-flex;
-        width: 0;
-        margin: 0;
-        align-items: center;
-        justify-content: center;
+        width: calc(20px * var(--icon-progress));
+        margin-left: calc(2px * var(--icon-progress));
+        margin-right: calc(2px * var(--icon-progress));
         vertical-align: -2px;
-
-        opacity: 0;
-        visibility: hidden;
-        overflow: visible;
-        transform: scale(0.88);
-
-        transition:
-          opacity 0.14s ease-out,
-          transform 0.14s ease-out;
-      }
-
-      .story-icon-token.is-visible {
-        width: 20px;
-        margin-left: 2px;
-        margin-right: 2px;
-
-        opacity: 1;
-        visibility: visible;
-        transform: scale(1);
       }
 
       .story-inline-icon {
@@ -2632,16 +2605,24 @@
     (function() {
 
       const section =
-        document.querySelector(".story-scroll-section");
+        document.querySelector(
+          ".story-scroll-section"
+        );
 
       if (!section) {
         return;
       }
 
 
+      /* ---------------------------------------------------------
+         TURN EACH TEXT SPAN INTO WORD TOKENS
+         --------------------------------------------------------- */
+
       const revealSpans =
         Array.from(
-          section.querySelectorAll(".story-reveal")
+          section.querySelectorAll(
+            ".story-reveal"
+          )
         );
 
       revealSpans.forEach(
@@ -2658,7 +2639,9 @@
             function(word, index) {
 
               const token =
-                document.createElement("span");
+                document.createElement(
+                  "span"
+                );
 
               token.className =
                 "story-word";
@@ -2668,10 +2651,17 @@
 
               span.appendChild(token);
 
-              if (index < words.length - 1) {
+              if (
+                index <
+                words.length - 1
+              ) {
+
                 span.appendChild(
-                  document.createTextNode(" ")
+                  document.createTextNode(
+                    " "
+                  )
                 );
+
               }
 
             }
@@ -2681,10 +2671,16 @@
       );
 
 
+      /* ---------------------------------------------------------
+         ONE GLOBAL READING ORDER
+         --------------------------------------------------------- */
+
       const sequence = [];
 
       Array.from(
-        section.querySelectorAll(".story-row")
+        section.querySelectorAll(
+          ".story-row"
+        )
       ).forEach(
         function(row) {
 
@@ -2694,7 +2690,9 @@
             )
           ).forEach(
             function(token) {
+
               sequence.push(token);
+
             }
           );
 
@@ -2702,13 +2700,37 @@
       );
 
 
-      function clamp(value, min, max) {
+      function clamp(
+        value,
+        min,
+        max
+      ) {
+
         return Math.min(
           Math.max(value, min),
           max
         );
+
       }
 
+
+      function smoothstep(value) {
+
+        const x =
+          clamp(value, 0, 1);
+
+        return (
+          x *
+          x *
+          (3 - (2 * x))
+        );
+
+      }
+
+
+      /* ---------------------------------------------------------
+         RAW SCROLL -> STORY PROGRESS
+         --------------------------------------------------------- */
 
       function getTargetProgress() {
 
@@ -2737,17 +2759,33 @@
           totalScrollable;
 
         const isMobile =
-          window.matchMedia("(max-width: 900px)").matches;
+          window.matchMedia(
+            "(max-width: 900px)"
+          ).matches;
 
+        /*
+          Keep the beginning and ending calm.
+          Mobile gets a little more breathing room.
+        */
         const start =
-          isMobile ? 0.145 : 0.11;
+          isMobile
+            ? 0.145
+            : 0.11;
 
         const end =
-          isMobile ? 0.885 : 0.90;
+          isMobile
+            ? 0.885
+            : 0.90;
 
         return clamp(
-          (sectionProgress - start) /
-          (end - start),
+          (
+            sectionProgress -
+            start
+          ) /
+          (
+            end -
+            start
+          ),
           0,
           1
         );
@@ -2755,19 +2793,29 @@
       }
 
 
-      function renderStory(readingProgress) {
+      /* ---------------------------------------------------------
+         CONTINUOUS TOKEN REVEAL
+         --------------------------------------------------------- */
 
-        const scaled =
+      function renderStory(
+        readingProgress
+      ) {
+
+        /*
+          We no longer switch one word ON and then jump to
+          the next one.
+
+          Each token owns a slightly overlapping reveal window.
+          That creates the continuous "reading light" feeling
+          instead of a staircase / random word effect.
+        */
+
+        const travel =
           readingProgress *
-          sequence.length;
-
-        const completedCount =
-          Math.floor(scaled);
-
-        const currentProgress =
-          scaled -
-          completedCount;
-
+          (
+            sequence.length +
+            0.65
+          );
 
         sequence.forEach(
           function(token, index) {
@@ -2777,48 +2825,60 @@
                 "story-icon-token"
               );
 
+            /*
+              Start each token a little before the previous
+              token has completely finished.
+
+              Words use a wider window.
+              Icons use a shorter window so they appear
+              naturally but not abruptly.
+            */
+            const tokenStart =
+              index - 0.22;
+
+            const duration =
+              isIcon
+                ? 0.72
+                : 1.28;
+
+            const rawLocal =
+              (
+                travel -
+                tokenStart
+              ) /
+              duration;
+
+            const local =
+              smoothstep(
+                rawLocal
+              );
+
+
             if (isIcon) {
 
-              token.classList.toggle(
-                "is-visible",
-                index < completedCount ||
-                (
-                  index === completedCount &&
-                  currentProgress > 0.58
-                )
+              /*
+                Keep icon completely absent for the first
+                portion of its token, then smoothly grow/fade in.
+              */
+              const iconLocal =
+                smoothstep(
+                  (
+                    local -
+                    0.22
+                  ) /
+                  0.78
+                );
+
+              token.style.setProperty(
+                "--icon-progress",
+                iconLocal.toFixed(4)
               );
 
-              return;
-            }
-
-
-            token.classList.remove(
-              "is-complete",
-              "is-current"
-            );
-
-            token.style.removeProperty(
-              "--word-progress"
-            );
-
-
-            if (index < completedCount) {
-
-              token.classList.add(
-                "is-complete"
-              );
-
-            } else if (
-              index === completedCount
-            ) {
-
-              token.classList.add(
-                "is-current"
-              );
+            } else {
 
               token.style.setProperty(
                 "--word-progress",
-                currentProgress.toFixed(3)
+                local.toFixed(4)
               );
 
             }
@@ -2829,60 +2889,102 @@
       }
 
 
+      /* ---------------------------------------------------------
+         SMOOTH SCRUB ENGINE
+         Frame-rate-independent damping.
+         --------------------------------------------------------- */
+
       let currentProgress =
         getTargetProgress();
 
       let targetProgress =
         currentProgress;
 
-      let animationFrame = null;
+      let frameId = null;
+
+      let previousTime =
+        performance.now();
 
 
-      function animateStory() {
+      function animateStory(now) {
+
+        const deltaSeconds =
+          Math.min(
+            (
+              now -
+              previousTime
+            ) /
+            1000,
+            0.05
+          );
+
+        previousTime = now;
 
         targetProgress =
           getTargetProgress();
 
         const isMobile =
-          window.matchMedia("(max-width: 900px)").matches;
+          window.matchMedia(
+            "(max-width: 900px)"
+          ).matches;
 
-        /* Mobile deliberately trails the scroll slightly.
-           This removes the abrupt/random feeling and gives
-           the reveal a smoother cinematic scrub. */
-        const ease =
-          isMobile ? 0.095 : 0.18;
+        /*
+          Lower response = more cinematic trailing.
+          Desktop remains slightly more direct.
+        */
+        const response =
+          isMobile
+            ? 6.6
+            : 8.4;
+
+        const damping =
+          1 -
+          Math.exp(
+            -response *
+            deltaSeconds
+          );
 
         currentProgress +=
-          (targetProgress - currentProgress) *
-          ease;
+          (
+            targetProgress -
+            currentProgress
+          ) *
+          damping;
 
         if (
           Math.abs(
-            targetProgress - currentProgress
-          ) < 0.00025
+            targetProgress -
+            currentProgress
+          ) <
+          0.00008
         ) {
+
           currentProgress =
             targetProgress;
+
         }
 
         renderStory(
           currentProgress
         );
 
+
         if (
           Math.abs(
-            targetProgress - currentProgress
-          ) > 0.0002
+            targetProgress -
+            currentProgress
+          ) >
+          0.00005
         ) {
 
-          animationFrame =
+          frameId =
             window.requestAnimationFrame(
               animateStory
             );
 
         } else {
 
-          animationFrame = null;
+          frameId = null;
 
         }
 
@@ -2894,11 +2996,16 @@
         targetProgress =
           getTargetProgress();
 
-        if (!animationFrame) {
-          animationFrame =
+        if (!frameId) {
+
+          previousTime =
+            performance.now();
+
+          frameId =
             window.requestAnimationFrame(
               animateStory
             );
+
         }
 
       }
@@ -2907,13 +3014,16 @@
       window.addEventListener(
         "scroll",
         requestStoryUpdate,
-        { passive: true }
+        {
+          passive: true
+        }
       );
 
       window.addEventListener(
         "resize",
         requestStoryUpdate
       );
+
 
       renderStory(
         currentProgress
