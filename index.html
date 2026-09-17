@@ -193,14 +193,15 @@
 
     .story-icon-token {
       display: inline-flex;
-      width: 25px;
-      margin: 0 2px;
+      width: 0;
+      margin: 0;
       align-items: center;
       justify-content: center;
       vertical-align: -3px;
 
       opacity: 0;
       visibility: hidden;
+      overflow: visible;
       transform: scale(0.90);
 
       transition:
@@ -209,6 +210,9 @@
     }
 
     .story-icon-token.is-visible {
+      width: 25px;
+      margin-left: 2px;
+      margin-right: 2px;
       opacity: 1;
       visibility: visible;
       transform: scale(1);
