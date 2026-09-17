@@ -2003,24 +2003,69 @@
     function closeDesktopMenus() {
 
       desktopMenus.forEach(
-        function(item) {
+  function(item) {
 
-          item.trigger.classList.remove("is-active");
+    const dropdown =
+      item.trigger.closest(".nav-dropdown");
 
-          item.trigger.setAttribute(
-            "aria-expanded",
-            "false"
-          );
 
-          item.menu.classList.remove("is-open");
+    /* OPEN ON DESKTOP HOVER */
 
-          item.menu.setAttribute(
-            "aria-hidden",
-            "true"
-          );
+    dropdown.addEventListener(
+      "mouseenter",
+      function() {
+
+        if (window.innerWidth > 900) {
+          openDesktopMenu(item);
+        }
+
+      }
+    );
+
+
+    /* CLOSE WHEN MOUSE LEAVES DROPDOWN */
+
+    dropdown.addEventListener(
+      "mouseleave",
+      function() {
+
+        if (window.innerWidth > 900) {
+          closeDesktopMenus();
+        }
+
+      }
+    );
+
+
+    /* KEEP CLICK SUPPORT FOR KEYBOARD / ACCESSIBILITY */
+
+    item.trigger.addEventListener(
+      "click",
+      function(event) {
+
+        event.stopPropagation();
+
+        if (window.innerWidth <= 900) {
+          return;
+        }
+
+        if (
+          item.menu.classList.contains("is-open")
+        ) {
+
+          closeDesktopMenus();
+
+        } else {
+
+          openDesktopMenu(item);
 
         }
-      );
+
+      }
+    );
+
+  }
+);
 
       navOverlay.classList.remove("is-active");
 
